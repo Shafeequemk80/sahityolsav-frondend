@@ -145,15 +145,15 @@ function UserSide() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16 px-10 xl:px-56">
         <img
-          src="/images/image.jpg"
+          src="/image.jpg"
           className="object-cover h-full w-full rounded-md"
         />
         <img
-          src="/images/image.jpg"
+          src="/image.jpg"
           className="object-cover h-full w-full rounded-md"
         />
         <img
-          src="/images/image.jpg"
+          src="/image.jpg"
           className="object-cover h-full w-full rounded-md"
         />
       </div>

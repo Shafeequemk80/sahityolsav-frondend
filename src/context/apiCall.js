@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/";
+const baseUrl = "https://sahityolsav-backred.onrender.com/";
 async function getDataServer(item,category) {
   const response = await axios.get(`${baseUrl}?item=${item}&category=${category}`);
 
