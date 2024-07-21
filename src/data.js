@@ -1,0 +1,13 @@
+const categories = ['Lower Primary', 'Upper Primary', 'High School', 'Higher Secondary', 'Junior', 'Senior', 'General'];
+const sectors = ['Kuttikkattoor', 'Cherooppa', 'Perumanna', 'Thathoor', 'Peruvayal', 'Chaththamnagalam', 'Perya', 'Kaniyath'];
+
+const itemsByCategory = {
+  'Lower Primary': ['Elocution', 'Madh Song', 'Quiz', 'Story Telling', 'Pencil Drawing', 'Water Color', 'Language Game', 'Reading Ml', 'Reading Arb-Ml', 'Book Test', 'Pencil Drawing G', 'Water Color G', 'Handwriting M G'],
+  'Upper Primary': ['Elocution', 'Mappilappattu', 'Story Writing', 'Quiz', 'Story Telling', 'Ganitha Keli', 'Pencil Drawing', 'Water Color', 'Spelling Bee', 'Reading Eng', 'Book Test', 'Pencil Drawing G', 'Water Color G', 'Book Test G', 'Story Writing G'],
+  'High School': ['Elocution M', 'Elocution E', 'Mappilappattu', 'Madh Ganam', 'Poem Recitation A', 'Poem Recitation U', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'News Reading', 'Pencil Drawing', 'Water Color', 'Caption Writing', 'Language Game E', 'Book Test', 'Embroidery', 'Pencil Drawing G', 'Water Color G', 'Book Test G', 'Story Writing G', 'Poem Making G'],
+  'Higher Secondary': ['Elocution M', 'Mappilappattu', 'Bakthi Ganam', 'Poem Recitation U', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'Essay Writing E', 'News Writing', 'Calligraphy', 'Pencil Drawing', 'Water Color', 'Caption Writing', 'Book Test', 'Calligraphy G', 'Story Writing G', 'Poem Making G', 'Book Test G'],
+  'Junior': ['Elocution M', 'Elocution A', 'Elocution E', 'Mappilappattu', 'Reading A', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'Essay Writing A', 'Mudravakya Rachana', 'Madh Gaana Rachana', 'Translatoin A', 'Calligraphy', 'feature Writing', 'Social Text', 'Sahithya Samvadam', 'Hadees Musabaqa', 'Book Test'],
+  'Senior': ['Elocution M', 'Elocution U', 'Elocution E', 'Mappilappattu', 'Hamd Urdu', 'Poem Recitaton E', "Musha'ara Alfiya", 'Quiz', 'Poem Making', 'Poem Making E', 'Essay Writing M', 'Essay Writing E', 'Essay Writing U', 'Mudravakya Rachana', 'Madh Gaana Rachana', 'Translatoin E', 'Poster Designing', 'feature Writing', 'Social Text', 'E Poster', 'Survey Tool', 'Digital Illustration', 'Book Test'],
+  'General': ['Spot Magazine', 'Daff', 'Arabana', 'Group Song A', 'Group Song B', 'Moulid', 'Qaseeda', 'Viplava Gaanam', 'Chumarezuth', 'Malappatt', 'Risala Quiz', 'Qawali', 'Viplava gaana rachana', 'Mapilappatt Rachana', 'Project', 'Collage', 'Nasheeda', 'Sufi Geetham', 'Family Magazine']
+};
+export {categories,sectors,itemsByCategory}
