@@ -6,7 +6,7 @@ function AdminSide() {
   const [category, setcategory] = useState("");
   const [items, setItems] = useState([]);
   const [formData, setFormData] = useState({
-    resultCount: 0,
+    resultCount: '',
     item: "",
     firstPrice: "",
     firstUnit: "",

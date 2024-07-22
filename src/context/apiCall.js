@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const baseUrl = "https://sahityolsav-backred.onrender.com/";
+const baseUrl = "https://sahityolsav-backred.onrender.com";
 async function getDataServer(item,category) {
-  const response = await axios.get(`${baseUrl}?item=${item}&category=${category}`);
+  const response = await axios.get(`${baseUrl}/?item=${item}&category=${category}`);
 
   return response.data
 }
@@ -10,7 +10,7 @@ async function getDataServer(item,category) {
 async function postDataServer(postData) {
   try {
     console.log("apicalled");
-    const response = await axios.post(`${baseUrl}data`, postData);
+    const response = await axios.post(`${baseUrl}/data`, postData);
     console.log("apicalledres");
     alert("Data received and saved successfully")
   } catch (error) {
