@@ -1,0 +1,10 @@
+{
+    "rewrites": [
+      { "source": "/admin", "destination": "/admin" }
+    ],
+    "redirects": [
+      { "source": "/", "destination": "/", "statusCode": 200 },
+      { "source": "/admin", "destination": "/admin", "statusCode": 200 }
+    ]
+  }
+  
