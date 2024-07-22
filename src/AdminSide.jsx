@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { categories, itemsByCategory, sectors } from "./data.js";
 import { postDataServer } from "./context/apiCall.js";
-
+import {  useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 function AdminSide() {
+  const navigate= useNavigate()
   const [category, setcategory] = useState("");
   const [items, setItems] = useState([]);
   const [formData, setFormData] = useState({
@@ -32,6 +34,7 @@ function AdminSide() {
 
   const handlesumbit = async (event) => {
     event.preventDefault()
+    toast.loading('Waiting...');
     console.log("sumbit");
     const postData = {
       ...formData,
@@ -39,6 +42,18 @@ function AdminSide() {
     };
     const data = await postDataServer(postData);
     console.log(data, data);
+    toast.dismiss()
+    toast.success('Successfully Added!');
+    setFormData({
+      resultCount: '',
+      item: "",
+      firstPrice: "",
+      firstUnit: "",
+      secPrice: "",
+      secUnit: "",
+      thirdPrice: "",
+      thirdUnit: "",
+    })
   };
 
   return (
@@ -47,7 +62,15 @@ function AdminSide() {
         onSubmit={handlesumbit}
         className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 md:px-56"
       >
+        <div className="flex justify-between">
         <h2 className="text-3xl lg:text-4xl font-bold">Upload Results Here</h2>
+        <button 
+        onClick={()=>{
+          navigate('/')
+        }}
+        className=" px-2 py-0 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+        >Home</button>
+        </div>
         <div className="flex flex-col gap-2">
           <label for="firstName" className="font-medium text-lg">
             Result Number
@@ -59,6 +82,7 @@ function AdminSide() {
             value={formData.resultCount}
             onChange={handleformData}
           />
+          
         </div>
         <div className="flex flex-col space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-7 lgLgap-10">
@@ -258,6 +282,7 @@ function AdminSide() {
           <span className="text-xl">&copy;</span> - 2023
         </h1>
       </footer>
+      <Toaster />
     </div>
   );
 }

@@ -12,7 +12,7 @@ async function postDataServer(postData) {
     console.log("apicalled");
     const response = await axios.post(`${baseUrl}/data`, postData);
     console.log("apicalledres");
-    alert("Data received and saved successfully")
+
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error; // Rethrow the error to handle it in the calling function
