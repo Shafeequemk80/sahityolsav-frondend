@@ -109,25 +109,29 @@ function UserSide() {
           </div>
         </div>
 
-        <div className="pt-10 border mt-10 h-96 flex justify-center items-center">
-          
-          {results? <p>{results.resultCount}</p>:'' }
-          {results? <p>{results.category}</p>:'' }
-          {results? <p>{results.item}</p> : <p>No results available</p>}
-          {results ? (
-  <div className="text-center">
-    <h2>{results.result[0].firstPrice}</h2>
-    <h5>{results.result[0].firstUnit}</h5>
-    <h2>{results.result[1].secPrice}</h2>
-    <h5>{results.result[1].secUnit}</h5>
-    <h2>{results.result[2].thirdPrice}</h2>
-    <h5>{results.result[2].thirdUnit}</h5>
-  </div>
-) : (
-  ""
-)}
+        <div
+  className="border flex text-black  mt-10 h-96 w-auto"
+  style={{ backgroundImage: "url('/design.jpg')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', }}
+>
+  {results ? <h1 className="font-400">{results.resultCount}</h1> : ''}
+  {results ? <p>{results.category}</p> : ''}
+  {results ? <p>{results.item}</p> : <p>No results available</p>}
+  {results ? (
+    <div className="text-start">
+      <h2>{results.result[0].firstPrice}</h2>
+      <h5>{results.result[0].firstUnit}</h5>
+      <h2>{results.result[1].secPrice}</h2>
+      <h5>{results.result[1].secUnit}</h5>
+      <h2>{results.result[2].thirdPrice}</h2>
+      <h5>{results.result[2].thirdUnit}</h5>
+    </div>
+  ) : (
+    ''
+  )}
+</div>
 
-        </div>
+
+        
       </div>
 
       <div className="flex flex-col gap-8 py-14 mt-4 text-center w-full px-10 xl:px-56">
