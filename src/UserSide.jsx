@@ -127,11 +127,11 @@ function UserSide() {
               <div className="absolute top-2 left-5 md:left-10 md:top-6 left-5 right-0 bottom-0 flex flex-col p-4">
                 <div className="flex flex-row font-bold">
                   <div className="flex align-middle">
-                    <h1 className="text-xl md:pt-2  md:text-2xl lg:text-3xl text-black">
+                    <h1 className="text-xl md:pt-2  md:text-2xl roboto-bold lg:text-3xl text-black">
                       {results.resultCount}
                     </h1>
                   </div>
-                  <div className="text-start pl-1  md:pl-2">
+                  <div className="text-start pl-1 roboto-bold  md:pl-2">
                     <p className="text-xs md:text-sm lg:text-xl text-black">
                       {results.category}
                     </p>
@@ -148,7 +148,7 @@ function UserSide() {
                           result.secPrice ||
                           result.thirdPrice}
                       </h2>
-                      <p className="text-sm/snug md:text-base lg:text-sm text-black -mt-1 md:-mt-2">
+                      <p className="text-sm/snug roboto-regular md:text-base lg:text-sm text-black -mt-1 md:-mt-2">
                         {result.firstUnit || result.secUnit || result.thirdUnit}
                       </p>
                     </div>
@@ -158,7 +158,15 @@ function UserSide() {
             </figure>
           </div>
         )}
-        {results?<button onClick={handleDownloadImage}>Download</button>:""}
+{results && (
+  <button
+    onClick={handleDownloadImage}
+    className="mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+  >
+    Download
+  </button>
+)}
+
       {results==false&&(
         
         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
