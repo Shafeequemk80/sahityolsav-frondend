@@ -19,9 +19,9 @@ function UserSide() {
     try {
       const response = await getDataServer(itemValue, category);
       
+      console.log(response.data);
       // Do something with the response, e.g., update state or UI
       setResults(response.data);
-     
        
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -114,13 +114,19 @@ function UserSide() {
           {results? <p>{results.resultCount}</p>:'' }
           {results? <p>{results.category}</p>:'' }
           {results? <p>{results.item}</p> : <p>No results available</p>}
-          {results?
-          results.result.map((item, index) => (
-        <div key={index} className="text-center">
-          <h2>{item.firstPrice}</h2>
-          <h5>{item.firstUnit}</h5>
-        </div>
-      )):''}
+          {results ? (
+  <div className="text-center">
+    <h2>{results.result[0].firstPrice}</h2>
+    <h5>{results.result[0].firstUnit}</h5>
+    <h2>{results.result[1].secPrice}</h2>
+    <h5>{results.result[1].secUnit}</h5>
+    <h2>{results.result[2].thirdPrice}</h2>
+    <h5>{results.result[2].thirdUnit}</h5>
+  </div>
+) : (
+  ""
+)}
+
         </div>
       </div>
 
