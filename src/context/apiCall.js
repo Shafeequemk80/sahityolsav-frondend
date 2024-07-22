@@ -3,7 +3,7 @@ import axios from "axios";
 const baseUrl = "https://sahityolsav-backred.onrender.com";
 async function getDataServer(item,category) {
   const response = await axios.get(`${baseUrl}/?item=${item}&category=${category}`);
-
+console.log(response);
   return response.data
 }
 

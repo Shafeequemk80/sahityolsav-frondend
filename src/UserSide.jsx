@@ -19,7 +19,7 @@ function UserSide() {
   const handleItemData = async (event) => {
     const itemValue = event.target.value;
     setSelectedItem(itemValue);
-    
+
     try {
       const response = await getDataServer(itemValue, category);
       setResults(response.data);
@@ -77,7 +77,10 @@ function UserSide() {
         </div>
       </div>
 
-      <div id="results" className="w-full text-center px-10 py-10 lg:py-20 xl:px-56">
+      <div
+        id="results"
+        className="w-full text-center px-10 py-10 lg:py-20 xl:px-56"
+      >
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl text-[#e8002c] font-bold">
           Results
         </h2>
@@ -112,50 +115,59 @@ function UserSide() {
             </select>
           </div>
         </div>
+        {results && (
+          <div className="border flex justify-center text-black mt-10">
+            <figure className="relative max-w-lg" id="downloadImage">
+              <img
+                className="h-auto max-w-full"
+                src="/design.jpg"
+                alt="Background"
+              />
 
-        <div className="border flex justify-center text-black mt-10">
-        <figure className="relative max-w-lg" id="downloadImage">
-  <img
-    className="h-auto max-w-full"
-    src="/design.jpg"
-    alt="Background"
-  />
-  {results && (
-    <div className="absolute top-2 left-5 md:left-10 md:top-6 left-5 right-0 bottom-0 flex flex-col p-4">
-      <div className="flex flex-row font-bold">
-        <div className="flex align-middle">
-          <h1 className="text-xl md:pt-2  md:text-2xl lg:text-3xl text-black">
-            {results.resultCount}
-          </h1>
-        </div>
-        <div className="text-start pl-1  md:pl-2">
-          <p className="text-xs md:text-sm lg:text-xl text-black">
-            {results.category}
-          </p>
-          <p className="text-xs md:text-sm lg:text-xl text-black  -mt-1 md:-mt-2" >
-            {results.item}
-          </p>
-        </div>
-      </div>
-      <div className="text-start mt-3">
-        {results.result.map((result, index) => (
-          <div key={index}>
-            <h2 className="text-sm md:text-xl lg:text-2xl text-black roboto-medium">
-              {result.firstPrice || result.secPrice || result.thirdPrice}
-            </h2>
-            <h5 className="text-xs md:text-base lg:text-lg text-black -mt-1 md:-mt-2" >
-              {result.firstUnit || result.secUnit || result.thirdUnit}
-            </h5>
+              <div className="absolute top-2 left-5 md:left-10 md:top-6 left-5 right-0 bottom-0 flex flex-col p-4">
+                <div className="flex flex-row font-bold">
+                  <div className="flex align-middle">
+                    <h1 className="text-xl md:pt-2  md:text-2xl lg:text-3xl text-black">
+                      {results.resultCount}
+                    </h1>
+                  </div>
+                  <div className="text-start pl-1  md:pl-2">
+                    <p className="text-xs md:text-sm lg:text-xl text-black">
+                      {results.category}
+                    </p>
+                    <p className="text-xs md:text-sm lg:text-xl text-black  -mt-1 md:-mt-2">
+                      {results.item}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-start mt-4">
+                  {results.result.map((result, index) => (
+                    <div key={index}>
+                      <h2 className="text-sm  md:text-xl lg:text-xl text-black roboto-bold">
+                        {result.firstPrice ||
+                          result.secPrice ||
+                          result.thirdPrice}
+                      </h2>
+                      <p className="text-sm/snug md:text-base lg:text-sm text-black -mt-1 md:-mt-2">
+                        {result.firstUnit || result.secUnit || result.thirdUnit}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </figure>
           </div>
-        ))}
+        )}
+        {results?<button onClick={handleDownloadImage}>Download</button>:""}
+      {results==false&&(
+        
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
+        <h2 className="font-bold text-lg">Notice:</h2>
+        <p className="mt-2">The results for the {category} {selectedItem} Competition have not yet been published. Please check back later for updates.</p>
       </div>
-    </div>
-  )}
-</figure>
 
-        </div>
 
-        <button onClick={handleDownloadImage}>Download</button>
+      )}
       </div>
 
       <div className="flex flex-col gap-8 py-14 mt-4 text-center w-full px-10 xl:px-56">
@@ -200,13 +212,21 @@ function UserSide() {
           Get connected
         </h1>
         <div className="flex items-center justify-center text-white gap-1">
-          <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/ssf_kunnamangalam">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:instagram"
             ></span>
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/ssf_kunnamangalam">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:facebook"
@@ -218,7 +238,11 @@ function UserSide() {
               data-icon="mdi:web"
             ></span>
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/ssf_kunnamangalam">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/channel/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:youtube"
