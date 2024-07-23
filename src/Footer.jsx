@@ -30,12 +30,12 @@ function Footer() {
           alt="Gallery"
         />
         <img
-          src="/image.jpg"
+          src="/image1.jpg"
           className="object-cover h-full w-full rounded-md"
           alt="Gallery"
         />
         <img
-          src="/image.jpg"
+          src="/image2.jpg"
           className="object-cover h-full w-full rounded-md"
           alt="Gallery"
         />

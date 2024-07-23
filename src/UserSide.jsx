@@ -1,16 +1,17 @@
 import React, { useState, useRef } from "react";
 import { categories, itemsByCategory } from "./data.js";
 import { getDataServer } from "./context/apiCall.js";
-import html2canvas from "html2canvas";
+
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Footer.jsx";
+import ImageDownlad from "./ImageDownlad.jsx";
 
 function UserSide() {
   const [category, setCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [items, setItems] = useState([]);
   const [results, setResults] = useState(null);
-  const downloadImageRef = useRef(null); // Reference for the element to capture
+
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
@@ -33,20 +34,7 @@ function UserSide() {
     }
   };
 
-  const handleDownloadImage = async () => {
-    const element = downloadImageRef.current;
-    const canvas = await html2canvas(element, {
-      scale: 4,
-    });
-    const data = canvas.toDataURL("image/jpg");
-    const link = document.createElement("a");
 
-    link.href = data;
-    link.download = `${category}-${selectedItem}.jpg`;
-    document.body.appendChild(link); 
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const scrollToElement = (elementId) => {
     const element = document.getElementById(elementId);
@@ -62,16 +50,14 @@ function UserSide() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+const nameRow="flex flex-row mb-3 md:mr-5 lg:mr-0"
+const position="text-center poppins-bold text-3xl me-3 text-gray-400 flex align-middle"
+const resultName="poppins-bold text-2xl"
+const resultItem="poppins-medium text-gray-600 -mt-1"
   return (
     <>
       <div
-        // style={{
-        //   backgroundImage: "url('/bg.jpg')",
-        //   backgroundRepeat: "no-repeat",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        // }}
+    
         className="bg px-10 xl:px-56 relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10 animated"
       >
         <h1 className="text-sm lg:text-xl pb-2 lg:pb-3 md:pb-5 italic">
@@ -99,12 +85,12 @@ function UserSide() {
 
       <div
         id="results"
-        className="w-full text-center px-10 py-10 lg:py-20 xl:px-56"
+        className="w-full text-center "
       >
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl text-[#e8002c] font-bold">
           Results
         </h2>
-        <div className="flex md:flex-row flex-col md:justify-between space-y-1.5 pt-5 lg:pt-10 md:space-y-0">
+        <div className="flex md:flex-row flex-col md:justify-between space-y-1.5 pt-5 lg:pt-10 md:space-y-0 px-10 py-10 lg:py-20 xl:px-56">
           <div className="flex flex-col gap-3 items-start">
             <label className="text-lg text-[#151622]">Category</label>
             <select
@@ -135,64 +121,44 @@ function UserSide() {
             </select>
           </div>
         </div>
-
+      
         {results && (
-          <div className="border flex justify-center text-black mt-10">
-            <figure
-              className="relative max-w-lg"
-              id="downloadImage"
-              ref={downloadImageRef}
-            >
-              <img
-                className="h-auto max-w-full"
-                src="/design.jpg"
-                alt="Background"
-              />
+          <div className="flex flex-col ml-16 md:flex-row justify-between  lg:px-52 ">
+          
+    <div className={nameRow}>
+      <div className={position}>01</div>
+      <div className="text-start">
+        <p className={resultName}>{results.result[0].firstPrice}</p>
+        <p className={resultItem}>{results.result[0].firstUnit}</p>
+      </div>
+     </div>
+      <div className={nameRow}>
+      <div className={position}>02</div>
+      <div className="text-start">
+      <p className={resultName}>{results.result[1].secPrice}</p>
+        <p className={resultItem}>{results.result[1].secUnit}</p>
+      </div>
+      </div >
+       <div className={nameRow}>
+       <div className={position}>03</div>
+      <div className="text-start">
+      <p className={resultName}>{results.result[2].thirdPrice}</p>
+        <p className={resultItem}>{results.result[2]. thirdUnit}</p>
+      </div>
+       </div>
+        </div>
+  )}
 
-              <div className="absolute top-2 left-5 md:left-10 md:top-6  right-0 bottom-0 flex flex-col p-4">
-                <div className="flex flex-row ">
-                  <div className="flex items-center ">
-                    <h1 className="text-xl poppins-bold lg:text-3xl text-black">
-                      {results.resultCount}
-                    </h1>
-                  </div>
-
-                  <div className="text-start  pl-1   md:pl-2">
-                    <p className="text-sm md:text-lg  poppins-bold lg:text-xl text-black">
-                      {results.category}
-                    </p>
-                    <p className=" text-sm md:text-lg  poppins-bold lg:text-xl text-black  -mt-1 md:-mt-1">
-                      {results.item}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-start mt-4">
-                  {results.result.map((result, index) => (
-                    <div key={index}>
-                      <h2 className="text-sm/[14px]   md:text-xl md:mt-2 lg:text-xl text-black poppins-bold">
-                        {result.firstPrice ||
-                          result.secPrice ||
-                          result.thirdPrice}
-                      </h2>
-                      <p className="text-[10px] mb-2 mt-0.5 poppins-light md:text-base lg:text-sm text-gray-800 -mt- md:-mt-1">
-                        {result.firstUnit || result.secUnit || result.thirdUnit}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </figure>
-          </div>
-        )}
-        {results && (
-          <button
-            onClick={handleDownloadImage}
-            className="mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
-          >
-            Download
-          </button>
-        )}
-
+        <div className={`grid grid-cols-1 py-7 lg:grid-cols-3 ${results ? 'bg-slate-100' : ''} md:px-28`}>
+          
+        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design.jpg'} color={'text-black'}/>
+        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design2.jpg'} color={'text-white'}/>
+        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design3.jpg'} color={'text-black'}/>
+        
+        
+        </div>
+      </div>
+     
         {results == false && (
           <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
             <h2 className="font-bold text-lg">Notice:</h2>
@@ -202,7 +168,6 @@ function UserSide() {
             </p>
           </div>
         )}
-      </div>
       <Footer />
       <button
         onClick={scrollToTop}
