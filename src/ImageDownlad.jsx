@@ -50,7 +50,7 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
                       {results.resultCount}
                     </div>
                   </div>
-                  <div className="text-start pl-1 md:pl-2">
+                  <div className="text-start pl-[5px] md:pl-2">
                     <div className={categoryTextClass}>
                       {results.category}
                     </div>
