@@ -6,7 +6,7 @@ function Footer() {
      
      <div className="flex flex-col gap-8 py-14 mt-4 text-center w-full px-10 xl:px-56">
         <h2 className="text-4xl lg:text-5xl text-[#e8002c] font-bold">
-          What's Sahithyolsav
+          What's Theme
         </h2>
         <p className="text-lg lg:text-xl font-thin">
           "SSF Kerala's Sahityotsav is an annual literary festival celebrating

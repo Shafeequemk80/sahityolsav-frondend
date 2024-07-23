@@ -5,7 +5,6 @@ import html2canvas from "html2canvas";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Footer.jsx";
 
-
 function UserSide() {
   const [category, setCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
@@ -20,18 +19,15 @@ function UserSide() {
     setResults(null);
   };
 
-  
-
   const handleItemData = async (event) => {
     const itemValue = event.target.value;
     setSelectedItem(itemValue);
 
     try {
-    
-      toast.loading('Waiting...');
+      toast.loading("Waiting...");
       const response = await getDataServer(itemValue, category);
       setResults(response.data);
-    toast.dismiss()
+      toast.dismiss();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -39,15 +35,15 @@ function UserSide() {
 
   const handleDownloadImage = async () => {
     const element = downloadImageRef.current;
-    const canvas = await html2canvas(element,{
-      scale:4
+    const canvas = await html2canvas(element, {
+      scale: 4,
     });
     const data = canvas.toDataURL("image/jpg");
     const link = document.createElement("a");
 
     link.href = data;
     link.download = `${category}-${selectedItem}.jpg`;
-    document.body.appendChild(link);
+    document.body.appendChild(link); 
     link.click();
     document.body.removeChild(link);
   };
@@ -69,14 +65,27 @@ function UserSide() {
 
   return (
     <>
-      <div className="bg px-10 xl:px-56 relative text-center w-full h-screen flex flex-col items-center justify-center pt-10 animated">
+      <div
+        // style={{
+        //   backgroundImage: "url('/bg.jpg')",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        // }}
+        className="bg px-10 xl:px-56 relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10 animated"
+      >
         <h1 className="text-sm lg:text-xl pb-2 lg:pb-3 md:pb-5 italic">
           SSF KUNNAMANGALAM DIVISION
         </h1>
-        <h1 className="flex flex-col text-center gap-1 xl:gap-2">
-          <span className="font-extrabold text-4xl lg:text-6xl xl:text-8xl">
+        <h1 className="flex flex-col text-center justify-center  xl:gap-2">
+          {/* <span className="font-extrabold text-4xl lg:text-6xl xl:text-8xl">
             Sahithyolsav
-          </span>
+          </span> */}
+          <img
+            className="  md:w-[600PX] w-sm "
+            src="/sahiText.png"
+            alt="Sahithyolsav"
+          />
         </h1>
         <div className="pt-14 lg:pt-20">
           <button onClick={() => scrollToElement("results")}>
@@ -126,7 +135,7 @@ function UserSide() {
             </select>
           </div>
         </div>
-      
+
         {results && (
           <div className="border flex justify-center text-black mt-10">
             <figure
