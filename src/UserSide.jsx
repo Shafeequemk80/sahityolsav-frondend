@@ -87,15 +87,15 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
         id="results"
         className="w-full text-center "
       >
-        <h2 className="py-5 md:py-10 text-4xl lg:text-5xl text-[#e8002c] font-bold">
+        <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
           Results
         </h2>
-        <div className="flex md:flex-row flex-col md:justify-between space-y-1.5 pt-5 lg:pt-10 md:space-y-0 px-10 py-10 lg:py-20 xl:px-56">
+        <div className="flex md:flex-row flex-col md:justify-between  poppins-medium   space-y-1.5 pt-5 lg:pt-10 md:space-y-0 px-10 py-10 lg:py-20 xl:px-56">
           <div className="flex flex-col gap-3 items-start">
-            <label className="text-lg text-[#151622]">Category</label>
+            <label className="text-xl poppins-medium  text-[#151622]">Category</label>
             <select
               onChange={handleCategoryChange}
-              className="p-2 w-full font-medium text-white bg-black rounded md:text-lg md:p-3 md:px-8"
+              className="p-2 w-full font-medium text-white bg-black rounded md:text-lg md:p-3 md:px-8 "
             >
               <option value="">Select Category</option>
               {categories.map((category) => (
@@ -106,7 +106,7 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
             </select>
           </div>
           <div className="flex flex-col gap-3 items-start">
-            <label className="text-lg text-[#151622]">Item</label>
+            <label className="text-xl poppins-medium  text-[#151622]">Item</label>
             <select
               id="item"
               onChange={handleItemData}
