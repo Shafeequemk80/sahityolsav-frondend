@@ -12,6 +12,7 @@ async function postDataServer(postData) {
     console.log("apicalled");
     const response = await axios.post(`${baseUrl}/data`, postData);
     console.log("apicalledres");
+    return response.data
 
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -19,4 +20,21 @@ async function postDataServer(postData) {
   }
 }
 
-export { postDataServer,getDataServer };
+const options = {
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+};
+
+async function ImageUploadServer(formData){
+try {
+  console.log(formData);
+  const response= await  axios.post(`${baseUrl}/imageUpload`,formData, options)
+  console.log(response);
+return response.data
+} catch (error) {
+  console.log(error);
+}
+}
+
+export { postDataServer,getDataServer,ImageUploadServer ,baseUrl};

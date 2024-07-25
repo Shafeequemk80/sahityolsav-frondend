@@ -64,12 +64,20 @@ function AdminSide() {
       >
         <div className="flex justify-between">
         <h2 className="text-3xl lg:text-4xl font-bold">Upload Results Here</h2>
-        <button 
+    <div className="w-100">
+    <button 
         onClick={()=>{
           navigate('/')
         }}
-        className=" px-2 py-0 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+        className=" px-7 py-2 mr-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+        >Add Image</button>
+        <button 
+        onClick={()=>{
+          navigate('/admin/AddImage')
+        }}
+        className=" px-7 py-2  bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
         >Home</button>
+    </div>
         </div>
         <div className="flex flex-col gap-2">
           <label for="firstName" className="font-medium text-lg">

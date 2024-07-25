@@ -1,17 +1,47 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { categories, itemsByCategory } from "./data.js";
-import { getDataServer } from "./context/apiCall.js";
+import { baseUrl, getDataServer } from "./context/apiCall.js";
 
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Footer.jsx";
 import ImageDownlad from "./ImageDownlad.jsx";
+import axios from "axios";
 
 function UserSide() {
   const [category, setCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [items, setItems] = useState([]);
   const [results, setResults] = useState(null);
+  const [images, setImages] = useState([null, null, null]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/showImage`);
+        const data = response.data.data;
+        console.log(data.image1); // Logging the fetched data
+
+        const newImages = [
+          data.image1 ? `${baseUrl}/static/results/${data.image1}` : null,
+          data.image2 ? `${baseUrl}/static/results/${data.image2}` : null,
+          data.image3 ? `${baseUrl}/static/results/${data.image3}` : null,
+        ];
+
+        setImages(newImages);
+
+        // Logging the URLs directly
+        newImages.forEach((image, index) => {
+          if (image) {
+            console.log(`Image ${index + 1} URL: ${image}`);
+          }
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
@@ -29,12 +59,17 @@ function UserSide() {
       const response = await getDataServer(itemValue, category);
       setResults(response.data);
       toast.dismiss();
+      if (response.data) {
+        toast.success(`Yes, ${category} ${selectedItem} result published`);
+      } else {
+        toast(`NO, ${category} ${selectedItem} result published Yet`);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast.dismiss();
+      toast.error("Failed to fetch results. Please try again.");
     }
   };
-
-
 
   const scrollToElement = (elementId) => {
     const element = document.getElementById(elementId);
@@ -50,16 +85,14 @@ function UserSide() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-const nameRow="flex flex-row mb-3 md:mr-5 lg:mr-0"
-const position="text-center poppins-bold text-3xl me-3 text-gray-400 flex align-middle"
-const resultName="poppins-bold text-2xl"
-const resultItem="poppins-medium text-gray-600 -mt-1"
+  const nameRow = "flex flex-row mb-3 md:mr-5 lg:mr-0 ";
+  const position =
+    "text-center flext items-center poppins-bold text-3xl  me-3 text-gray-400 flex align-middle";
+  const resultName = "poppins-semibold text-xl";
+  const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-      <div
-    
-        className="bg px-10 xl:px-56 relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10 animated"
-      >
+      <div className="bg px-10 xl:px-56 relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10 animated">
         <h1 className="text-sm lg:text-xl pb-2 lg:pb-3 md:pb-5 italic">
           SSF KUNNAMANGALAM DIVISION
         </h1>
@@ -83,16 +116,15 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
         </div>
       </div>
 
-      <div
-        id="results"
-        className="w-full text-center "
-      >
+      <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
           Results
         </h2>
         <div className="flex md:flex-row flex-col md:justify-between  poppins-medium   space-y-1.5 pt-5 lg:pt-10 md:space-y-0 px-10 py-10 lg:py-20 xl:px-56">
           <div className="flex flex-col gap-3 items-start">
-            <label className="text-xl poppins-medium  text-[#151622]">Category</label>
+            <label className="text-xl poppins-medium  text-[#151622]">
+              Category
+            </label>
             <select
               onChange={handleCategoryChange}
               className="p-2 w-full font-medium text-white bg-black rounded md:text-lg md:p-3 md:px-8 "
@@ -106,7 +138,9 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
             </select>
           </div>
           <div className="flex flex-col gap-3 items-start">
-            <label className="text-xl poppins-medium  text-[#151622]">Item</label>
+            <label className="text-xl poppins-medium  text-[#151622]">
+              Item
+            </label>
             <select
               id="item"
               onChange={handleItemData}
@@ -121,46 +155,67 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
             </select>
           </div>
         </div>
-      
+
         {results && (
           <div className="flex flex-col ml-16 md:flex-row justify-between  lg:px-52 ">
-          
-    <div className={nameRow}>
-      <div className={position}>01</div>
-      <div className="text-start">
-        <p className={resultName}>{results.result[0].firstPrice}</p>
-        <p className={resultItem}>{results.result[0].firstUnit}</p>
-      </div>
-     </div>
-      <div className={nameRow}>
-      <div className={position}>02</div>
-      <div className="text-start">
-      <p className={resultName}>{results.result[1].secPrice}</p>
-        <p className={resultItem}>{results.result[1].secUnit}</p>
-      </div>
-      </div >
-       <div className={nameRow}>
-       <div className={position}>03</div>
-      <div className="text-start">
-      <p className={resultName}>{results.result[2].thirdPrice}</p>
-        <p className={resultItem}>{results.result[2]. thirdUnit}</p>
-      </div>
-       </div>
-        </div>
-  )}
+            <div className={nameRow}>
+              <div className={position}>01</div>
+              <div className="text-start">
+                <p className={resultName}>{results.result[0].firstPrice}</p>
+                <p className={resultItem}>{results.result[0].firstUnit}</p>
+              </div>
+            </div>
+            <div className={nameRow}>
+              <div className={position}>02</div>
+              <div className="text-start">
+                <p className={resultName}>{results.result[1].secPrice}</p>
+                <p className={resultItem}>{results.result[1].secUnit}</p>
+              </div>
+            </div>
+            <div className={nameRow}>
+              <div className={position}>03</div>
+              <div className="text-start">
+                <p className={resultName}>{results.result[2].thirdPrice}</p>
+                <p className={resultItem}>{results.result[2].thirdUnit}</p>
+              </div>
+            </div>
+          </div>
+        )}
 
-        <div className={`grid grid-cols-1 py-7 lg:grid-cols-3 ${results ? 'bg-slate-100' : ''} md:px-28`}>
+        <div
+          className={`grid grid-cols-1 py-7 px-1 lg:grid-cols-3 ${
+            results ? "bg-slate-100" : ""
+          } lg:px-28 `}
+        >
+          <ImageDownlad
+            results={results}
+            category={category}
+            selectedItem={selectedItem}
+            image={images[0]}
+            color={"text-black"}
+          />
+          <ImageDownlad
+            results={results}
+            category={category}
+            selectedItem={selectedItem}
+            image={images[1]}
+            color={"text-white"}
+          />
+          <ImageDownlad
+            results={results}
+            category={category}
+            selectedItem={selectedItem}
+            image={images[2]}
+            color={"text-black"}
+          />
           
-        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design.jpg'} color={'text-black'}/>
-        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design2.jpg'} color={'text-white'}/>
-        <ImageDownlad results={results} category={category} selectedItem={selectedItem} image={'/design3.jpg'} color={'text-black'}/>
-        
-        
         </div>
+        
       </div>
-     
-        {results == false && (
-          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
+
+    <div className="flex justify-center">
+    {results == false && (
+          <div className="bg-yellow-100 border-l-4 mx-10 text-center border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
             <h2 className="font-bold text-lg">Notice:</h2>
             <p className="mt-2">
               The results for the {category} {selectedItem} Competition have not
@@ -168,6 +223,7 @@ const resultItem="poppins-medium text-gray-600 -mt-1"
             </p>
           </div>
         )}
+    </div>
       <Footer />
       <button
         onClick={scrollToTop}

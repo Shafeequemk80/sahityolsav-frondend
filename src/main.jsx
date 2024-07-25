@@ -3,8 +3,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./global.css";
 import "./index.css";
+
 import UserSide from "./UserSide.jsx";
 import AdminSide from "./AdminSide.jsx";
+
+import ImageUpload from "./ImageUpload.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<UserSide />} />
         <Route path="/admin" element={<AdminSide />} />
+        <Route path="admin/addImage" element={<ImageUpload />} />
       </Routes>
     </Router>
   </React.StrictMode>
