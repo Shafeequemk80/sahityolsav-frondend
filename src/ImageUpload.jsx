@@ -11,7 +11,7 @@ const ImageUpload = () => {
   const [color, setColor] = useState([null, null, null]);
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(true);
     const fetchData = async () => {
       try {
         const response = await axios.get(`${baseUrl}/showImage`);
