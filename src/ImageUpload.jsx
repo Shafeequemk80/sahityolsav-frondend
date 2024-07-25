@@ -20,13 +20,13 @@ const ImageUpload = () => {
 
         const newImages = [
           data.image1.image
-            ? `${baseUrl}/static/results/${data.image1.image}`
+            ? data.image1.image
             : null,
             data.image2.image
-            ? `${baseUrl}/static/results/${data.image2.image}`
+            ? data.image2.image
             : null,
           data.image3.image
-            ? `${baseUrl}/static/results/${data.image3.image}`
+            ? data.image3.image
             : null,
         ];
 
@@ -46,9 +46,7 @@ const ImageUpload = () => {
             console.log(`Image ${index + 1} URL: ${image}`);
           }
         });
-        setTimeout(() => {
-          setLoading(false);
-        }, 3000);
+      
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -56,7 +54,9 @@ const ImageUpload = () => {
 
     fetchData();
   }, []);
-
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
   const handleImageClick = (index) => {
     document.getElementById(`fileInput${index}`).click();
   };

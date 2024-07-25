@@ -28,13 +28,13 @@ function UserSide() {
 
         const newImages = [
           data.image1.image
-            ? `${baseUrl}/static/results/${data.image1.image}`
+            ?data.image1.image
             : null,
             data.image2.image
-            ? `${baseUrl}/static/results/${data.image2.image}`
+            ? data.image2.image
             : null,
           data.image3.image
-            ? `${baseUrl}/static/results/${data.image3.image}`
+            ? data.image3.image
             : null,
         ];
 
@@ -170,7 +170,7 @@ function UserSide() {
         )}
 
         <div
-          className={`grid grid-cols-1 py-7 px-1 lg:grid-cols-3 ${
+          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
             results ? "bg-slate-100" : ""
           } lg:px-28 `}
         >
