@@ -62,23 +62,24 @@ function AdminSide() {
         onSubmit={handlesumbit}
         className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 md:px-56"
       >
-        <div className="flex justify-between">
-        <h2 className="text-3xl lg:text-4xl font-bold">Upload Results Here</h2>
-    <div className="w-100">
+<div className="flex flex-col lg:flex-row justify-between items-center mb-4">
+  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-0">Upload Results Here</h2>
+  <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto text-center">
     <button 
-        onClick={()=>{
-          navigate('/')
-        }}
-        className=" px-7 py-2 mr-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
-        >Add Image</button>
-        <button 
-        onClick={()=>{
-          navigate('/admin/AddImage')
-        }}
-        className=" px-7 py-2  bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
-        >Home</button>
-    </div>
-        </div>
+      onClick={() => navigate('/admin/AddImage')}
+      className="px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+    >
+      Add Image
+    </button>
+    <button 
+      onClick={() => navigate('/')}
+      className="px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+    >
+      Go Home
+    </button>
+  </div>
+</div>
+
         <div className="flex flex-col gap-2">
           <label for="firstName" className="font-medium text-lg">
             Result Number

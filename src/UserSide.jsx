@@ -7,27 +7,46 @@ import Footer from "./Footer.jsx";
 import ImageDownlad from "./ImageDownlad.jsx";
 import axios from "axios";
 
+import Home from "./Home.jsx";
+
+
+
 function UserSide() {
   const [category, setCategory] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [items, setItems] = useState([]);
   const [results, setResults] = useState(null);
   const [images, setImages] = useState([null, null, null]);
-
+  const [color, setColor] = useState([null, null, null]);
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
         const response = await axios.get(`${baseUrl}/showImage`);
         const data = response.data.data;
-        console.log(data.image1); // Logging the fetched data
+        console.log(data.image1.image); // Logging the fetched data
 
         const newImages = [
-          data.image1 ? `${baseUrl}/static/results/${data.image1}` : null,
-          data.image2 ? `${baseUrl}/static/results/${data.image2}` : null,
-          data.image3 ? `${baseUrl}/static/results/${data.image3}` : null,
+          data.image1.image
+            ? `${baseUrl}/static/results/${data.image1.image}`
+            : null,
+            data.image2.image
+            ? `${baseUrl}/static/results/${data.image2.image}`
+            : null,
+          data.image3.image
+            ? `${baseUrl}/static/results/${data.image3.image}`
+            : null,
         ];
 
+        const newColor=[
+            data.image1.color? data.image1.color: null,
+            data.image2.color? data.image2.color: null,
+            data.image3.color?data.image3.color: null,
+        ]
+
         setImages(newImages);
+        setColor(newColor)
+  
 
         // Logging the URLs directly
         newImages.forEach((image, index) => {
@@ -42,7 +61,6 @@ function UserSide() {
 
     fetchData();
   }, []);
-
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
@@ -71,16 +89,7 @@ function UserSide() {
     }
   };
 
-  const scrollToElement = (elementId) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest",
-      });
-    }
-  };
+
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -92,29 +101,7 @@ function UserSide() {
   const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-      <div className="bg px-10 xl:px-56 relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10 animated">
-        <h1 className="text-sm lg:text-xl pb-2 lg:pb-3 md:pb-5 italic">
-          SSF KUNNAMANGALAM DIVISION
-        </h1>
-        <h1 className="flex flex-col text-center justify-center  xl:gap-2">
-          {/* <span className="font-extrabold text-4xl lg:text-6xl xl:text-8xl">
-            Sahithyolsav
-          </span> */}
-          <img
-            className="  md:w-[600PX] w-sm "
-            src="/sahiText.png"
-            alt="Sahithyolsav"
-          />
-        </h1>
-        <div className="pt-14 lg:pt-20">
-          <button onClick={() => scrollToElement("results")}>
-            <span
-              className="iconify text-3xl lg:text-4xl rounded-full p-1 animate-bounce transition-all duration-500 bg-white"
-              data-icon="mdi:chevron-down"
-            ></span>
-          </button>
-        </div>
-      </div>
+     <Home/>
 
       <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
@@ -192,21 +179,21 @@ function UserSide() {
             category={category}
             selectedItem={selectedItem}
             image={images[0]}
-            color={"text-black"}
+            color={`text-${color[0]}`}
           />
           <ImageDownlad
             results={results}
             category={category}
             selectedItem={selectedItem}
             image={images[1]}
-            color={"text-white"}
+            color={`text-${color[1]}`}
           />
           <ImageDownlad
             results={results}
             category={category}
             selectedItem={selectedItem}
             image={images[2]}
-            color={"text-black"}
+            color={`text-${color[2]}`}
           />
           
         </div>
