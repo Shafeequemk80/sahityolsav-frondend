@@ -170,7 +170,7 @@ function UserSide() {
         )}
 
         <div
-          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
+          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
             results ? "bg-slate-100" : ""
           } lg:px-28 `}
         >

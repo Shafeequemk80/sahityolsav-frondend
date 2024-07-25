@@ -110,24 +110,30 @@ const ImageUpload = () => {
         </div>
       )}
 
-      <div className="px-4 py-6 sm:px-8 sm:py-8  lg:px-36 lg:py-12">
-     <div className="flex justify-center mb-10">
-     <h2 className="text-sm md:text-xl sm:w-full lg:w-1/2 text-center font-semibold ">
-  Upload your results here. Make sure the image is square (1:1 aspect ratio) and don't forget to select the background color type.
-</h2>
+      <div className="px-4 py-6 sm:px-8 sm:py-8 bg-slate-100 lg:px-32 lg:py-12 overflow-scroll">
+     <div className="flex flex-col text-center  w-full justify-center mb-10">
+    
+    <h2 className="text-lg md:text-2xl w-full   font-semibold ">
+    Upload your results here </h2>
+  <p className="text-red-600 pt-3">Make sure the image is square (1:1 aspect ratio) and don't forget to select the background color type.</p>
      </div>
+
+     
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="flex justify-center ">
+          <div
+          
+          className="grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 gap-10">
             {images.map((image, index) => (
               <div>
               <div
                 key={index}
-                className="relative drop-shadow  max-w-[350px] max-h-[350px]"
+                className="relative drop-shadow  border-solid border-8 border-[#d1d5e8] min-w-[350px] max-w-[350px] max-h-[350px] min-h-[350px]"
               >
                 <img
                   src={image || "https://via.placeholder.com/350"}
                   alt={`Design ${index + 1}`}
-                  className="w-full h-auto object-cover cursor-pointer"
+                  className="w-full h-full object-cover cursor-pointer"
                   onClick={() => handleImageClick(index)}
                 />
                 <input
@@ -159,6 +165,7 @@ const ImageUpload = () => {
                  </div>
                  </div>
             ))}
+          </div>
           </div>
           <div className="flex justify-center mt-5">
             <button
