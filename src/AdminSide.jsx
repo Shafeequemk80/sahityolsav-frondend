@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { categories, itemsByCategory, sectors } from "./data.js";
-import { postDataServer } from "./context/apiCall.js";
+import { postDataServer } from "./api/apiCall.js";
 import {  useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 function AdminSide() {
@@ -60,7 +60,7 @@ function AdminSide() {
     <div>
       <form
         onSubmit={handlesumbit}
-        className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 md:px-56"
+        className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 lg:px-20 xl:px-56"
       >
 <div className="flex flex-col lg:flex-row justify-between items-center mb-4">
   <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-0">Upload Results Here</h2>

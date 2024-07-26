@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl, ImageUploadServer } from "./context/apiCall";
+import { baseUrl, ImageUploadServer } from "./api/apiCall";
 import toast, { Toaster } from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 
@@ -110,7 +110,7 @@ const ImageUpload = () => {
         </div>
       )}
 
-      <div className="px-4 py-6 sm:px-8 sm:py-8 bg-slate-100 lg:px-32 lg:py-12 overflow-scroll">
+      <div className="px-4 py-6 sm:px-8 sm:py-8 bg-[#ffe7b0] lg:px-32 lg:py-12 overflow-scroll hide-scrollbar">
      <div className="flex flex-col text-center  w-full justify-center mb-10">
     
     <h2 className="text-lg md:text-2xl w-full   font-semibold ">
@@ -128,7 +128,7 @@ const ImageUpload = () => {
               <div>
               <div
                 key={index}
-                className="relative drop-shadow  border-solid border-8 border-[#d1d5e8] min-w-[350px] max-w-[350px] max-h-[350px] min-h-[350px]"
+                className="relative drop-shadow  border-solid border-8  border-[#c7d9a7] min-w-[350px] max-w-[350px] max-h-[350px] min-h-[350px]"
               >
                 <img
                   src={image || "https://via.placeholder.com/350"}
@@ -172,7 +172,7 @@ const ImageUpload = () => {
               type="submit"
               className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
-              Add Images
+              Submit Images
             </button>
           </div>
         </form>

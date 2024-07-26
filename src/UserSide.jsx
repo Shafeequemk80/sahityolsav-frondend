@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { categories, itemsByCategory } from "./data.js";
-import { baseUrl, getDataServer } from "./context/apiCall.js";
+import { baseUrl, getDataServer } from "./api/apiCall.js";
 
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Footer.jsx";
@@ -8,6 +8,7 @@ import ImageDownlad from "./ImageDownlad.jsx";
 import axios from "axios";
 
 import Home from "./Home.jsx";
+import Carousel from "./Carousel.jsx";
 
 
 
@@ -18,6 +19,25 @@ function UserSide() {
   const [results, setResults] = useState(null);
   const [images, setImages] = useState([null, null, null]);
   const [color, setColor] = useState([null, null, null]);
+  const [buttonShow, setButtonShow]=useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the screen height is greater than 500px and scroll position is more than 100px
+      if (window.scrollY > 100) {
+        setButtonShow(true);
+      } else {
+        setButtonShow(false);
+      }
+    };
+
+    // Add the scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     
     const fetchData = async () => {
@@ -101,7 +121,7 @@ function UserSide() {
   const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-     <Home/>
+     <Carousel/>
 
       <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
@@ -170,7 +190,8 @@ function UserSide() {
         )}
 
         <div
-          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
+        
+          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
             results ? "bg-slate-100" : ""
           } lg:px-28 `}
         >
@@ -212,15 +233,17 @@ function UserSide() {
         )}
     </div>
       <Footer />
-      <button
+    {buttonShow&&(
+        <button
         onClick={scrollToTop}
-        className="flex items-center justify-center z-50 fixed bottom-10 right-10 p-2 bg-[#e8002c] text-white rounded-full"
+        className="flex items-center justify-center z-50 fixed bottom-10 right-10  size-11 bg-[#e8002c] text-white rounded-full"
       >
         <span
           className="iconify text-xl lg:text-2xl"
           data-icon="mdi:arrow-up"
         ></span>
       </button>
+    )}
       <Toaster />
     </>
   );
