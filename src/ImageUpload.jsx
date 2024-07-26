@@ -128,12 +128,12 @@ const ImageUpload = () => {
               <div>
               <div
                 key={index}
-                className="relative drop-shadow  border-solid border-8  border-[#c7d9a7] min-w-[350px] max-w-[350px] max-h-[350px] min-h-[350px]"
+                className="relative drop-shadow   border-solid border-8  border-[#c7d9a7] h-[350px] w-[350px]"
               >
                 <img
                   src={image || "https://via.placeholder.com/350"}
                   alt={`Design ${index + 1}`}
-                  className="w-full h-full object-cover cursor-pointer"
+                  className="w-full h-full  object-cover  cursor-pointer"
                   onClick={() => handleImageClick(index)}
                 />
                 <input
@@ -170,7 +170,7 @@ const ImageUpload = () => {
           <div className="flex justify-center mt-5">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              className="px-4 py-2 bg-[#9fb973] text-black font-semibold rounded-md hover:bg-[#c7d9a7] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
               Submit Images
             </button>

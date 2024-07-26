@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
-const slides = [
-    'https://i.pinimg.com/originals/3e/2a/f6/3e2af664e061013a3d05aa99fa20c1d4.jpg',
-    'https://wallpaperaccess.com/full/443139.jpg',
-    'https://c4.wallpaperflare.com/wallpaper/367/168/897/stream-mountains-landscape-hd-wallpaper-preview.jpg',
-    'https://images7.alphacoders.com/133/1337829.png',
-    'https://png.pngtree.com/background/20230607/original/pngtree-beautiful-landscape-hd-wallpaper-picture-image_2903010.jpg'
-  ];
+import React, { useState, useEffect } from "react";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    'https://res.cloudinary.com/do0mvctrk/image/upload/v1721973460/358020129_2541173729369497_4997410294927867411_n_behgp1.jpg',
-    'https://wallpaperaccess.com/full/443139.jpg',
-    'https://c4.wallpaperflare.com/wallpaper/367/168/897/stream-mountains-landscape-hd-wallpaper-preview.jpg',
-    'https://images7.alphacoders.com/133/1337829.png',
-    'https://png.pngtree.com/background/20230607/original/pngtree-beautiful-landscape-hd-wallpaper-picture-image_2903010.jpg'
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_spi_zjcq6h.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/357480395_572652891493163_603989940549611415_n_nyk12s.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/358020129_2541173729369497_4997410294927867411_n_vudwn3.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_spi_zjcq6h.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_1_jwnfab.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_2_gywuvn.jpg",
+    "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982138/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_3_rh0wn1.jpg",
   ];
-
 
   const scrollToElement = (elementId) => {
     const element = document.getElementById(elementId);
@@ -43,16 +37,26 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
+    <div
+      id="default-carousel"
+      className="relative w-full"
+      data-carousel="slide"
+    >
       {/* Carousel wrapper */}
       <div className="relative h-[100vh] overflow-hidden  md:h-screen">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute flex items-center justify-center  h-full w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity  duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute flex items-center justify-center  h-full w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity  duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
             data-carousel-item
           >
-            <img src={slide} alt={`Slide ${index + 1}`} className="h-full w-full object-cover"  />
+            <img
+              src={slide}
+              alt={`Slide ${index + 1}`}
+              className="h-full w-full object-cover"
+            />
           </div>
         ))}
         <div className="absolute inset-0 flex flex-col  items-center justify-center bg-black bg-opacity-75">
