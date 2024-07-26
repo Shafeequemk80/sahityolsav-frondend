@@ -60,7 +60,7 @@ const Carousel = () => {
           </div>
         ))}
         <div className="absolute inset-0 flex flex-col  items-center justify-center bg-black bg-opacity-75">
-          >
+         
           <h1 className="flex flex-col text-center justify-center xl:gap-2">
             {/* <span className="font-extrabold text-4xl lg:text-6xl xl:text-8xl">
               Sahithyolsav
