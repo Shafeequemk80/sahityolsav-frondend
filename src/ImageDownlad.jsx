@@ -52,13 +52,8 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
               src={image}
               alt="Background"
             />
-            <div className="absolute top-5 left-8  right-0 bottom-0 flex flex-col ">
-              <div className="flex flex-row items-center space-x-2">
-                <div>
-                  <h2 className={`text-3xl  poppins-bold ${color}`}>
-                    {results.resultCount}
-                  </h2>
-                </div>
+            <div className="absolute top-5 left-6  right-0 bottom-0 flex flex-col ">
+              
                 <div className="text-start ">
                   <div className={`text- poppins-semibold ${color}`}>
                     {results.category}
@@ -66,10 +61,10 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
                   <div className={`text-sm poppins-semibold -mt-1  ${color}`}>
                     {results.item}
                   </div>
-                </div>
+                
               </div>
 
-              <div className="text-start mt-4">
+              <div className="text-start mt-4 pl-2">
                 {results.result.map((result, index) => (
                   <div key={index}>
                     <div className={`text-sm/[14px] poppins-medium ${color}`}>

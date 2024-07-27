@@ -8,7 +8,7 @@ function AdminSide() {
   const [category, setcategory] = useState("");
   const [items, setItems] = useState([]);
   const [formData, setFormData] = useState({
-    resultCount: '',
+
     item: "",
     firstPrice: "",
     firstUnit: "",
@@ -45,7 +45,7 @@ function AdminSide() {
     toast.dismiss()
     toast.success('Successfully Added!');
     setFormData({
-      resultCount: '',
+    
       item: "",
       firstPrice: "",
       firstUnit: "",
@@ -80,19 +80,7 @@ function AdminSide() {
   </div>
 </div>
 
-        <div className="flex flex-col gap-2">
-          <label for="firstName" className="font-medium text-lg">
-            Result Number
-          </label>
-          <input
-            id="resultCount"
-            className="w-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
-            type="text"
-            value={formData.resultCount}
-            onChange={handleformData}
-          />
-          
-        </div>
+    
         <div className="flex flex-col space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-7 lgLgap-10">
             <div className="flex flex-col gap-2">
