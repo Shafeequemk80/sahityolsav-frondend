@@ -1,5 +1,15 @@
 const categories = ['Lower Primary', 'Upper Primary', 'High School', 'Higher Secondary', 'Junior', 'Senior', 'General'];
-const sectors = ['Kuttikkattoor', 'Cherooppa', 'Perumanna', 'Thathoor', 'Peruvayal', 'Chaththamnagalam', 'Perya', 'Kaniyath'];
+const sectors = [
+  "Kunnamangalam",
+  "Pathimangalam",
+  "Mavoor",
+  "Kuttikkattoor",
+  "Perumanna",
+  "Cherooppa",
+  "Thathoor",
+  "Chathamangalam",
+  "Peruvayal"
+];
 
 const itemsByCategory = {
   'Lower Primary': ['Elocution', 'Madh Song', 'Quiz', 'Story Telling', 'Pencil Drawing', 'Water Color', 'Language Game', 'Reading Ml', 'Reading Arb-Ml', 'Book Test', 'Pencil Drawing G', 'Water Color G', 'Handwriting M G'],
