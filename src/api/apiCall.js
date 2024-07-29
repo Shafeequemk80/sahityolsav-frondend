@@ -1,7 +1,7 @@
 import axios from "axios";
 import { slides } from "../data";
-//const baseUrl = "http://localhost:3000";
-const baseUrl = "https://sahityolsav-backred.onrender.com";
+const baseUrl = "http://localhost:3000";
+//const baseUrl = "https://sahityolsav-backred.onrender.com";
 async function getDataServer(item,category) {
   const response = await axios.get(`${baseUrl}/?item=${item}&category=${category}`);
 console.log(response);
@@ -38,4 +38,10 @@ return response.data
 }
 }
 
-export { postDataServer,getDataServer,ImageUploadServer ,baseUrl};
+async function getallresult(){
+  const response= await axios.get(`${baseUrl}/allresult`)
+ 
+  return response.data
+}
+
+export { postDataServer,getDataServer,ImageUploadServer,getallresult ,baseUrl};

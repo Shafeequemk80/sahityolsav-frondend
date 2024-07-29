@@ -8,6 +8,7 @@ import UserSide from "./UserSide.jsx";
 import AdminSide from "./AdminSide.jsx";
 
 import ImageUpload from "./ImageUpload.jsx";
+import AllResult from "./AllResult.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<UserSide />} />
         <Route path="/admin" element={<AdminSide />} />
         <Route path="admin/addImage" element={<ImageUpload />} />
+        <Route path="admin/allresult" element={<AllResult />} />
       </Routes>
     </Router>
   </React.StrictMode>
