@@ -41,9 +41,9 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
   return (
     <>
       {results && (
-        <div className="">
+         <div className="">
           <div
-            className="relative mx-auto drop-shadow-xl   h-[350px] w-[350px] mb-24"
+            className="relative mx-auto drop-shadow-xl  text-center   h-[350px] w-[350px] mb-24"
             ref={downloadImageRef}
             id="downloadImage"
           >
@@ -52,27 +52,32 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
               src={image}
               alt="Background"
             />
-            <div className="absolute top-5 left-6  right-0 bottom-0 flex flex-col ">
-              
-                <div className="text-start ">
-                  <div className={`text- poppins-semibold ${color}`}>
-                    {results.category}
-                  </div>
-                  <div className={`text-sm poppins-semibold -mt-1  ${color}`}>
-                    {results.item}
-                  </div>
-                
+            <div className="absolute top-36 left-12  right-0 bottom-0 flex flex-col ">
+              <div className="text-start ">
+                <div className={`text-xs poppins-light ${color}`}>
+                  {results.category}
+                </div>
+                <div className={`text-sm poppins-medium -mt-1  ${color}`}>
+                  {results.item}
+                </div>
               </div>
 
-              <div className="text-start mt-4 pl-2">
+              <div className="text-start mt-3 pl-2">
                 {results.result.map((result, index) => (
                   <div key={index}>
-                    <div className={`text-sm/[14px] poppins-medium ${color}`}>
-                      {result.firstPrice ||
-                        result.secPrice ||
-                        result.thirdPrice}
+                    <div className={`text-[11px] poppins-semibold ${color}`}>
+                      {result.firstPrice || result.secPrice || result.thirdPrice
+                        ? (
+                            result.firstPrice ||
+                            result.secPrice ||
+                            result.thirdPrice
+                          )
+                            .toLowerCase()
+                            .replace(/^\w/, (c) => c.toUpperCase())
+                        : ""}
                     </div>
-                    <div className={`text-[10px] mb-2 poppins-light ${color}`}>
+
+                    <div className={`text-[8px] mb-2 -mt-1 poppins-light ${color}`}>
                       {result.firstUnit || result.secUnit || result.thirdUnit}
                     </div>
                   </div>

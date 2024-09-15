@@ -1,24 +1,165 @@
-const categories = ['Lower Primary', 'Upper Primary', 'High School', 'Higher Secondary', 'Junior', 'Senior', 'General'];
-const sectors = [
-  "Kunnamangalam",
-  "Pathimangalam",
-  "Mavoor",
-  "Kuttikkattoor",
-  "Perumanna",
-  "Cherooppa",
-  "Thathoor",
-  "Chathamangalam",
-  "Peruvayal"
+const categories = [
+  "HI-ZONE",
+  "RC HI-ZONE",
+  "MID-ZONE",
+  "RC MID-ZONE",
+  "UPPER-ZONE",
+   "RC UPPER-ZONE",
+  "LOWER-ZONE",
+  "RC LOWER ZONE",
+  "MIX-ZONE",
+  "RC MIX-ZONE"
+
+ 
 ];
+const sectors = ["Fath-hunoor", "Fath-hussamad", "Fath-hul kareem"];
 
 const itemsByCategory = {
-  'Lower Primary': ['Elocution', 'Madh Song', 'Quiz', 'Story Telling', 'Pencil Drawing', 'Water Color', 'Language Game', 'Reading Ml', 'Reading Arb-Ml', 'Book Test', 'Pencil Drawing G', 'Water Color G', 'Handwriting M G'],
-  'Upper Primary': ['Elocution', 'Mappilappattu', 'Story Writing', 'Quiz', 'Story Telling', 'Ganitha Keli', 'Pencil Drawing', 'Water Color', 'Spelling Bee', 'Reading Eng', 'Book Test', 'Pencil Drawing G', 'Water Color G', 'Book Test G', 'Story Writing G'],
-  'High School': ['Elocution M', 'Elocution E', 'Mappilappattu', 'Madh Ganam', 'Poem Recitation A',  'Poem Recitation M','Poem Recitation U', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'News Reading', 'Pencil Drawing', 'Water Color', 'Caption Writing', 'Language Game E', 'Book Test', 'Embroidery', 'Pencil Drawing G', 'Water Color G', 'Book Test G', 'Story Writing G', 'Poem Making G'],
-  'Higher Secondary': ['Elocution M', 'Mappilappattu', 'Bakthi Ganam', 'Poem Recitation U', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'Essay Writing E', 'News Writing', 'Calligraphy', 'Pencil Drawing', 'Water Color', 'Caption Writing', 'Book Test', 'Calligraphy G', 'Story Writing G', 'Poem Making G', 'Book Test G'],
-  'Junior': ['Elocution M', 'Elocution A', 'Elocution E', 'Mappilappattu', 'Reading A', 'Story Writing', 'Quiz', 'Poem Making', 'Essay Writing M', 'Essay Writing A', 'Mudravakya Rachana', 'Madh Gaana Rachana', 'Translatoin A', 'Calligraphy', 'feature Writing', 'Social Text', 'Sahithya Samvadam', 'Hadees Musabaqa', 'Book Test'],
-  'Senior': ['Elocution M', 'Elocution U', 'Elocution E','Story Writing', 'Mappilappattu', 'Hamd Urdu', 'Poem Recitaton E', "Musha'ara Alfiya", 'Quiz', 'Poem Making', 'Poem Making E', 'Essay Writing M', 'Essay Writing E', 'Essay Writing U', 'Mudravakya Rachana', 'Madh Gaana Rachana', 'Translatoin E', 'Poster Designing', 'feature Writing', 'Social Text', 'E Poster', 'Survey Tool', 'Digital Illustration', 'Book Test'],
-  'General': ['Spot Magazine', 'Daff', 'Social Story', 'Arabana', 'Group Song A', 'Group Song B', 'Moulid', 'Qaseeda', 'Viplava Gaanam', 'Chumarezuth', 'Malappatt', 'Risala Quiz', 'Qawali', 'Viplava gaana rachana', 'Mapilappatt Rachana', 'Project', 'Collage', 'Nasheeda', 'Sufi Geetham', 'Family Magazine']
+  "HI-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Elocution Malayalam",
+    "Arabic Song",
+    "Madhu Ganam",
+    "Arabic Padapayatt",
+    "Essay Malayalam",
+    "Story Writing",
+    "Quiz",
+    "Qira'ath (girls)",
+    "Hifz (girls)",
+    "Arabic Padapayatt (girls)",
+    "Essay Malayalam (girls)",
+    "Story Writing (girls)",
+    "Quiz (girls)",
+  ],
+  "MID-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Elocution Malayalam",
+    "Arabic Song",
+    "Madhu Ganam",
+    "Arabic Padapayatt",
+    "Essay Malayalam",
+    "Calligraphy Arabic",
+    "Pencil Drawing",
+    "Water Coloring",
+    "Quiz",
+    "Kusumam Test",
+    "Qira'ath (girls)",
+    "Hifz (girls)",
+    "Arabic Padapayatt (girls)",
+    "Essay Malayalam (girls)",
+    "Calligraphy Arabic (girls)",
+    "Pencil Drawing (girls)",
+    "Water Coloring (girls)",
+    "Quiz (girls)",
+  ],
+  "UPPER-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Elocution Malayalam",
+    "Arabic Song",
+    "Madhu Ganam",
+    "Storytelling",
+    "Calligraphy",
+    "Kusumam Test",
+    "Pencil Drawing",
+    "Water Coloring",
+    "Quiz",
+    "Reading Arabic",
+    "Handwriting Arabic",
+    "Qira'ath (girls)",
+    "Hifz (girls)",
+    "Calligraphy (girls)",
+    "Kusumam Test (girls)",
+    "Pencil Drawing (girls)",
+    "Water Coloring (girls)",
+    "Quiz (girls)",
+    "Reading Arabic (girls)",
+    "Handwriting Arabic (girls)",
+  ],
+  "LOWER-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Elocution Malayalam",
+    "Madhu Ganam",
+    "Storytelling",
+    "Handwriting Arabic",
+    "Malayalam",
+    "Reading Arabic Malayalam",
+    "Pencil Drawing",
+    "Qira'ath (girls)",
+    "Hifz (girls)",
+    "Handwriting Arabic (girls)",
+    "Malayalam (girls)",
+    "Reading Arabic Malayalam (girls)",
+    "Pencil Drawing (girls)",
+  ],
+  "RC MIX-ZONE": [
+   'Sport Magazine',
+   'Malappattu'
+
+  ],
+  "RC HI-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Speech ML",
+    "Madh Song",
+    "Speech ENG",
+    "Essay ML",
+    "Calligraphy"
+  ],
+  "RC MID-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Speech ML",
+    "Madh Song",
+    "Speech English",
+    "Essay ML",
+    "Calligraphy"
+  ],
+  "RC UPPER-ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Speech ML",
+    "Madh Song",
+    "Story Telling",
+    "Essay ML",
+    "Pencil Drawing",
+    "Water Colouring",
+    "Calligraphy"
+  ],
+  "RC LOWER ZONE": [
+    "Qira'ath",
+    "Hifz",
+    "Speech ML",
+    "Madh Song",
+    "Story Telling",
+    "Essay ML",
+    "Pencil Drawing",
+    "Water Colouring",
+    "Handwriting Arabic"
+  ],
+  "RC MIX-ZONE": [
+    "Burdha",
+    "Moulid",
+    "Malappatt",
+    "Qawwali",
+    "Group Song",
+    "Arabic Speech",
+    "Nasheeda",
+    "Essay ENG",
+    "Essay ARB",
+    "Arabic Language Game",
+    "Ibarath Reading",
+    "Hadees Musabaqa",
+    "Spot Magazine",
+    "Quiz Cat. A",
+    "Quiz Cat. B",
+    "Mappila Song Cat. A",
+    "Mappila Song Cat. B",
+    "Arabic Song"
+  ]
 };
 
 const slides = [
@@ -30,4 +171,4 @@ const slides = [
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_2_gywuvn.jpg",
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982138/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_3_rh0wn1.jpg",
 ];
-export {categories,sectors,itemsByCategory ,slides}
+export { categories, sectors, itemsByCategory, slides };

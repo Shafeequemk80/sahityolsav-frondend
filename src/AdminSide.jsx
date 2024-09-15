@@ -140,7 +140,7 @@ function AdminSide() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label for="firstSector" className="font-medium text-lg">
-                    Sector{" "}
+                    Team{" "}
                   </label>
                   <select
                     id="firstUnit"
@@ -148,7 +148,7 @@ function AdminSide() {
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
-                    <option value="">Select Sector</option>
+                    <option value="">Select Team</option>
                     {sectors.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
@@ -178,7 +178,7 @@ function AdminSide() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label for="secondSector" className="font-medium text-lg">
-                    Sector
+                  Team
                   </label>
                   <select
                     id="secUnit"
@@ -186,7 +186,7 @@ function AdminSide() {
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
-                    <option value="">Select Sector</option>
+                    <option value="">Select Team</option>
                     {sectors.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
@@ -205,7 +205,7 @@ function AdminSide() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-5">
                 <div className="flex flex-col gap-2">
                   <label for="thirdName" className="font-medium text-lg">
-                    Name
+                    Team
                   </label>
                   <input
                     id="thirdPrice"
@@ -217,7 +217,7 @@ function AdminSide() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label for="thirdSector" className="font-medium text-lg">
-                    Sector
+                  Team
                   </label>
                   <select
                     id="thirdUnit"
@@ -225,7 +225,7 @@ function AdminSide() {
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
-                    <option value="">Select Sector</option>
+                    <option value="">Select Team</option>
                     {sectors.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
