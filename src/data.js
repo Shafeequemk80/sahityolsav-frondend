@@ -95,7 +95,7 @@ const itemsByCategory = {
     "Reading Arabic Malayalam (girls)",
     "Pencil Drawing (girls)",
   ],
-  "RC MIX-ZONE": [
+  "MIX-ZONE": [
    'Sport Magazine',
    'Malappattu'
 

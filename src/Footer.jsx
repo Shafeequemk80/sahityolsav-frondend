@@ -73,7 +73,7 @@ function Footer() {
             ></span>
           </a>
         </div> */}
-        <h1 className="text-gray-100 mt-4 mb-2">
+        <h1 className="text-gray-100  mb-2">
           <span className="text-xl">&copy;</span> Designed By Shafeeque Sa'adi
         </h1>
       </footer>

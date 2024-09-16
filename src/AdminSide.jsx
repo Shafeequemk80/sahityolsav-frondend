@@ -205,7 +205,7 @@ function AdminSide() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-5">
                 <div className="flex flex-col gap-2">
                   <label for="thirdName" className="font-medium text-lg">
-                    Team
+                    Name
                   </label>
                   <input
                     id="thirdPrice"
@@ -247,36 +247,48 @@ function AdminSide() {
 
       <footer className="px-5 md:px-10 lg:px-10 xl:px-36 w-full gap-5 sm:max-w-full bg-[#151622] flex flex-col items-center justify-center">
         <h1 className="text-white mt-8 font-semibold text-sm lg:text-base">
-          Get connected
+         Al Fathah Rabeeh Fest Program committe
         </h1>
-        <div className="flex items-center justify-center text-white gap-1">
-          <a target="_blank" href="https://www.instagram.com/ssf_kunnamangalam">
+        {/* <div className="flex items-center justify-center text-white gap-1">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:instagram"
             ></span>
           </a>
-          <a target="_blank" href="https://www.instagram.com/ssf_kunnamangalam">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:facebook"
             ></span>
           </a>
-          <a href="sahithyolsavkgm.vercel.app">
+          <a href="https://sahithyolsavkgm.vercel.app">
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:web"
             ></span>
           </a>
-          <a href="https://www.instagram.com/ssf_kunnamangalam">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/channel/ssf_kunnamangalam"
+          >
             <span
               className="text-xl lg:text-3xl iconify"
               data-icon="mdi:youtube"
             ></span>
           </a>
-        </div>
-        <h1 className="text-gray-100 mt-4 mb-2">
-          <span className="text-xl">&copy;</span> - 2023
+        </div> */}
+        <h1 className="text-gray-100  mb-2">
+          <span className="text-xl">&copy;</span> Designed By Shafeeque Sa'adi
         </h1>
       </footer>
       <Toaster />
