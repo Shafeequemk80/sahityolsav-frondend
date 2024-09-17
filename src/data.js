@@ -44,6 +44,7 @@ const itemsByCategory = {
     "Pencil Drawing",
     "Water Coloring",
     "Quiz",
+    "Group Song",
     "Kusumam Test",
     "Qira'ath (girls)",
     "Hifz (girls)",

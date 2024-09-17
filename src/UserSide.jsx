@@ -9,6 +9,7 @@ import axios from "axios";
 
 import Home from "./Home.jsx";
 import Carousel from "./Carousel.jsx";
+import TeamPoint from "./TeamPoint.jsx";
 
 
 
@@ -232,6 +233,7 @@ function UserSide() {
           </div>
         )}
     </div>
+    <TeamPoint/>
       <Footer />
     {buttonShow&&(
         <button
