@@ -100,7 +100,7 @@ function UserSide() {
       if (response.data) {
         toast.success(`Yes, ${category} ${itemValue} result published`);
       } else {
-        toast(`NO, ${category} ${itemValue} result published Yet`);
+        toast(`NO, ${category} ${selectedItem} result published Yet`);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
