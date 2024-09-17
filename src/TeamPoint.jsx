@@ -3,9 +3,9 @@ import React from 'react';
 function TeamPoint() {
   // Dummy data for teams and their points
   const teams = [
-    { name: 'Fath-hul Kareem', points: 557 },
-    { name: 'Fath-hunoor', points: 474 },
-    { name: 'Fath-hussamad', points: 470 }
+    { name: 'Fath-hul Kareem', points: 569 },
+    { name: 'Fath-hunoor', points: 487 },
+    { name: 'Fath-hussamad', points: 474 }
   ];
 
   return (
