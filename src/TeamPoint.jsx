@@ -1,35 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { getTeamPoint } from "./api/apiCall";
+import toast, { Toaster } from "react-hot-toast";
 
 function TeamPoint() {
-  // Dummy data for teams and their points
-  const teams = [
-    { name: 'Fath-hul Kareem', points: 569 },
-    { name: 'Fath-hunoor', points: 487 },
-    { name: 'Fath-hussamad', points: 474 }
-  ];
+  const [points, setTeampoint] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const toastId = toast.loading("Waiting...");
+      try {
+        const response = await getTeamPoint();
+        // Check if response.data[0] is an array before setting state
+        if (Array.isArray(response.data)) {
+          setTeampoint(response.data);
+          toast.success("Team Points fetched successfully", { id: toastId });
+        } else {
+          toast.error("No data found", { id: toastId });
+        }
+      } catch (error) {
+        console.error("Error fetching team points:", error); // Log error for debugging
+        toast.error("Failed to fetch Team Points", { id: toastId });
+      }
+    };
+
+    fetchData();
+  }, []);
+console.log(points)
   return (
-    <div className="p-6 bg-[#FADFA1]">
-      <h1 className="text-4xl font-bold mb-6 text-black text-center">Final Result</h1>
-      <table className="min-w-full bg-white shadow-lg overflow-hidden rounded-lg">
+    <>
+      <div className="p-6 bg-[#FADFA1] flex justify-center">
+  <div className=" w-full lg:w-2/3">
+    <h1 className="text-4xl text-center font-bold mb-6 text-black">Final Result</h1>
+    <div className="overflow-x-auto">
+      <table className="w-full bg-white shadow-lg rounded-lg">
         <thead>
           <tr className="bg-[#9fb973] text-white">
-            <th className="py-3 px-4 rounded-tl-lg">Position</th>
-            <th className="py-3 px-4">Team</th>
-            <th className="py-3 px-4 rounded-tr-lg">Points</th>
+            <th className="py-3 px-4 rounded-tl-lg" scope="col">Position</th>
+            <th className="py-3 px-4"  scope="col">Team</th>
+            <th className="py-3 px-4 rounded-tr-lg" scope="col">Points</th>
           </tr>
         </thead>
         <tbody>
-          {teams.map((team, index) => (
-            <tr key={index} className={`${index % 2 === 1 ? 'bg-orange-50' : 'bg-white'}`}>
-              <td className="py-3 px-4 text-center text-lg font-semibold text-orange-700">{index + 1}</td>
-              <td className="py-3 px-4 text-lg text-gray-800">{team.name}</td>
-              <td className="py-3 px-4 text-center text-lg font-semibold text-red-600">{team.points}</td>
+          {points.length > 0 ? (
+            points.map((data, index) => (
+              <tr key={index} className={`${index % 2 === 1 ? 'bg-orange-50' : 'bg-white' }`}>
+              <td className={`py-3 px-4 ${index < 3 ? 'text-red-600' : 'text-black'} text-center text-lg font-semibold   ${index < 3 ? 'text-red-600 font-semibold' : 'text-gray-800'}`} >
+                {index + 1}
+              </td>
+              <td className={`py-3 px-4 text-lg  ${index < 3 ? 'text-red-600 font-semibold' : 'text-gray-800'}`}>
+                {data.team}
+              </td>
+              <td className= {`py-3 px-4 text-lg  ${index < 3 ? 'text-red-600 font-semibold' : 'text-gray-800'}`}>
+                {data.point}
+              </td>
             </tr>
-          ))}
+            
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" className="py-3 px-4 text-center text-lg text-gray-500">No points available</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+
+      <Toaster />
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { slides } from "../data";
-//const baseUrl = "http://localhost:3000";
-const baseUrl = "https://sahityolsav-backred.onrender.com";
+
+const baseUrl = "http://localhost:3000";
+//const baseUrl = "https://sahityolsav-backred.onrender.com";
 async function getDataServer(item,category) {
   const response = await axios.get(`${baseUrl}/?item=${item}&category=${category}`);
 console.log(response);
@@ -43,5 +43,33 @@ async function getallresult(){
  
   return response.data
 }
+async function getTeamPoint(){
+  const response= await axios.get(`${baseUrl}/teampoint`)
+ 
+  return response.data
+}
 
-export { postDataServer,getDataServer,ImageUploadServer,getallresult ,baseUrl};
+async function scoreData(formData) {
+  try {
+    console.log("Sending dd formData:", formData);
+    const response = await axios.post(
+      `${baseUrl}/saveteampoint`,
+      formData
+    );
+    console.log("Response received:", response);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error("Server error:", error.response.status, error.response.data);
+    } else if (error.request) {
+      // No response was received after the request was made
+      console.error("No response received:", error.request);
+    } else {
+      // Other errors during the request setup
+      console.error("Error setting up request:", error.message);
+    }
+  }
+}
+
+export { postDataServer,getDataServer,ImageUploadServer,getallresult,getTeamPoint ,scoreData ,baseUrl};
