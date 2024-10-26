@@ -8,12 +8,9 @@ const ScoreAd = () => {
     'Periya', 'Hidaya', 'Ummalathoor', 'Kovoor', 'Chevayoor',
     'Poovattuparamba', 'Kottayithazham'
   ];
-  
 
-  
   const [formState, setFormState] = useState({});
-
- 
+  const [errors, setErrors] = useState({});
 
   const handlePointChange = (e, team) => {
     const points = parseInt(e.target.value, 10) || 0;
@@ -21,16 +18,50 @@ const ScoreAd = () => {
       ...formState,
       [team]: points,
     });
+    // Clear error when the user corrects the input
+    if (errors[team]) {
+      setErrors({
+        ...errors,
+        [team]: '',
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    teamPoints.forEach((team) => {
+      if (!formState[team] && formState[team] !== 0) {
+        newErrors[team] = 'Points are required';
+        isValid = false;
+      } else if (formState[team] < 0) {
+        newErrors[team] = 'Points cannot be negative';
+        isValid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      toast.error('Please fix the errors before submitting.');
+      return;
+    }
+
     toast.loading('Adding scores...');
     console.log('Submitted Form Data:', formState);
+    
     const response = await scoreData(formState);
     toast.dismiss();
+
     if (response.message === true) {
       toast.success('Scores added successfully');
+      setFormState({}); // Reset form after successful submission
     } else {
       toast.error('Failed to add scores');
     }
@@ -42,17 +73,18 @@ const ScoreAd = () => {
         Results
       </h1>
       <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6 font-poppins">
-        {teamPoints.map((team,i) => (
+        {teamPoints.map((team) => (
           <React.Fragment key={team}>
             <label className="w-full cursor-pointer border p-3">
               {team === 'ManjeriEast' ? "Manjeri East" : team === 'ManjeriWest' ? "Manjeri West" : team}
               <input
                 type="text"
-                className="w-full cursor-pointer border border-theme_black p-3 placeholder:text-black mt-2"
+                className={`w-full cursor-pointer border border-theme_black p-3 placeholder:text-black mt-2 ${errors[team] ? 'border-red-500' : ''}`}
                 placeholder="Enter Point"
-                value={formState[team] }
+                value={formState[team] || ''}
                 onChange={(e) => handlePointChange(e, team)}
               />
+              {errors[team] && <span className="text-red-500 text-sm">{errors[team]}</span>}
             </label>
           </React.Fragment>
         ))}
