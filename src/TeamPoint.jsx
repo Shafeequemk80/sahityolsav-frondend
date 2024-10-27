@@ -35,9 +35,9 @@ console.log(points)
       <table className="w-full bg-white shadow-lg rounded-lg">
         <thead>
           <tr className="bg-[#9fb973] text-white">
-            <th className="py-3 px-4 rounded-tl-lg" scope="col">Position</th>
-            <th className="py-3 px-4"  scope="col">Team</th>
-            <th className="py-3 px-4 rounded-tr-lg" scope="col">Points</th>
+            <th className="py-md-3 px-md-4  py-1 px-1 rounded-tl-lg" scope="col">Position</th>
+            <th className="py-md-3 px-md-4 py-1 px-1"   scope="col">Team</th>
+            <th className="py-md-3 px-md-4 py-1 px-1 rounded-tr-lg" scope="col">Points</th>
           </tr>
         </thead>
         <tbody>

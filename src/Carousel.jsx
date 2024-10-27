@@ -53,22 +53,39 @@ const Carousel = () => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 flex flex-col  items-center justify-center bg-black bg-opacity-75">
+        <div className="absolute inset-0 flex flex-col  items-center justify-center">
          
-          <h1 className="flex flex-col text-center justify-center xl:gap-2">
-            {/* <span className="font-extrabold text-4xl lg:text-6xl xl:text-8xl">
-              Sahithyolsav
-            </span> */}
-            <img
-              className="md:w-[600px] w-sm px-20 "
-              src="/sahiText.png"
-              alt="Sahithyolsav"
-            />
-          </h1>
+        {/* <h1 className="flex flex-col items-center text-center mt-10 justify-center xl:gap-2">
+  <img
+    className="md:w-[400px] w-sm px-20 animate-[slideInFromTop_1s_ease-out] mb-4"
+    src="/heading/Asset 1.png"
+    alt="Sahithyolsav"
+    style={{
+      animationDelay: "0s",
+    }}
+  />
+  <img
+    className="md:w-[600px] w- px-20 animate-[slideInFromBottom_1s_ease-out] mb-4"
+    src="/heading/Asset 2.png"
+    alt="Sahithyolsav"
+    style={{
+      animationDelay: "0.5s",
+    }}
+  />
+  <img
+    className="md:w-[600px] w-sm px-20 animate-[slideInFromLeft_1s_ease-out]"
+    src="/heading/Asset 4.png"
+    alt="Sahithyolsav"
+    style={{
+      animationDelay: "1s",
+    }}
+  />
+</h1> */}
+
           <div className="pt-14 lg:pt-20">
             <button onClick={() => scrollToElement("results")}>
               <span
-                className="iconify text-3xl lg:text-4xl rounded-full p-1 animate-bounce transition-all duration-500 bg-white"
+                className="iconify text-3xl lg:text-4xl rounded-full p-1 animate-bounce transition-all duration-500 text-white mt-20 bg-blue-600"
                 data-icon="mdi:chevron-down"
               ></span>
             </button>
