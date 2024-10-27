@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { getTeamPoint } from "./api/apiCall";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 
 function TeamPoint() {
   const [points, setTeampoint] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const toastId = toast.loading("Waiting...");
+      // const toastId = toast.loading("Waiting...");
       try {
         const response = await getTeamPoint();
         // Check if response.data[0] is an array before setting state
         if (Array.isArray(response.data)) {
           setTeampoint(response.data);
-          toast.success("Team Points fetched successfully", { id: toastId });
+          // toast.success("Team Points fetched successfully", { id: toastId });
         } else {
-          toast.error("No data found", { id: toastId });
+          // toast.error("No data found", { id: toastId });
         }
       } catch (error) {
         console.error("Error fetching team points:", error); // Log error for debugging
-        toast.error("Failed to fetch Team Points", { id: toastId });
+        // toast.error("Failed to fetch Team Points", { id: toastId });
       }
     };
 
@@ -67,8 +67,8 @@ console.log(points)
   </div>
 </div>
 
-
-      <Toaster />
+{/* 
+      <Toaster /> */}
     </>
   );
 }
