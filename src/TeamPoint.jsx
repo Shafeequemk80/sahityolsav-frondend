@@ -28,7 +28,7 @@ function TeamPoint() {
 console.log(points)
   return (
     <>
-      <div className="p-6 bg-[#FADFA1] flex justify-center">
+      <div className="p-6 bg-[#FADFA1] mt-10 flex justify-center">
   <div className=" w-full lg:w-2/3">
     <h1 className="text-4xl text-center font-bold mb-6 text-black">Final Result</h1>
     <div className="overflow-x-auto">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { categories, itemsByCategory, sectors } from "./data.js";
+import { categories, itemsByCategory, teams } from "./data.js";
 import { postDataServer } from "./api/apiCall.js";
 import {  useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -149,7 +149,7 @@ function AdminSide() {
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {sectors.map((sector) => (
+                    {teams.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
                       </option>
@@ -187,7 +187,7 @@ function AdminSide() {
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {sectors.map((sector) => (
+                    {teams.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
                       </option>
@@ -226,7 +226,7 @@ function AdminSide() {
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {sectors.map((sector) => (
+                    {teams.map((sector) => (
                       <option key={sector} value={sector}>
                         {sector}
                       </option>

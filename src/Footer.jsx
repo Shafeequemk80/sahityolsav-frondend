@@ -3,17 +3,32 @@ import React from 'react'
 function Footer() {
   return (
     <>
-     
-     <div className="flex flex-col gap-8 py-14 mt-4 text-center w-full px-10 xl:px-56">
+
+      <div className="flex flex-col gap-8 py-14 mt-4 text-center w-full px-10 xl:px-56">
         <h2 className="text-4xl lg:text-5xl  font-bold">
           What's Theme
         </h2>
         <p className="text-lg lg:text-xl font-thin">
-        "Madrassa Kalolsav  is an annual celebration commemorating the birth of Prophet Muhammad (Eid Milad-un-Nabi), organized by SBS Kuttikkattoor range committe at Fathah Nagar, Velliparamba. This fest, with a history stretching back over 1,400 years, invites participants to reflect on the life, teachings, and journeys of the Prophet. It serves as a spiritual and cultural gathering where scholars, poets, and religious enthusiasts come together to share their knowledge, express devotion, and engage in meaningful discussions. The festival features a variety of activities, including recitations, religious lectures, panel discussions, and workshops, all aimed at deepening the understanding of Islam and fostering a sense of community among the attendees."
+          The Jubilo Life Festival is a celebration of creativity, faith, and knowledge, providing a space where participants can express their talents and reflect on the deeper aspects of life. The fourth edition, with the theme "Key; Opens and Closes," highlights the significance of choices, opportunities, and transitions in our journey.
+
+          A key symbolizes access and restriction—it grants entry to new possibilities while also enabling us to close doors that no longer serve us. In the context of life, this represents:
+
+          Personal Growth – Unlocking one's potential through learning, self-improvement, and perseverance.
+
+          Faith and Spirituality – Opening hearts to wisdom and guidance while closing paths that lead to distractions or negativity.
+
+          Creativity and Expression – Using art, poetry, and performances to explore life's complexities and transitions.
+
+          Community and Unity – Strengthening bonds through shared experiences, cultural appreciation, and dialogue.
+
+
+          At Al Irshad Dawa College, Thechiyad, this festival serves as a platform for students and participants to reflect on their journey, embrace transformation, and celebrate the diverse expressions of life through various arts competitions.
+
+          Ultimately, Jubilo Life Festival invites everyone to hold their own key—to open doors to success, creativity, and enlightenment while mindfully closing those that hinder progress.
         </p>
       </div>
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16 px-10 xl:px-56">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16 px-10 xl:px-56">
         <img
           src="/image.jpg"
           className="object-cover h-full w-full rounded-md"
@@ -29,11 +44,11 @@ function Footer() {
           className="object-cover h-full w-full rounded-md"
           alt="Gallery"
         />
-      </div> */}
+      </div>
 
       <footer className="px-5 md:px-10 lg:px-10 xl:px-36 w-full gap-5 sm:max-w-full bg-[#151622] flex flex-col items-center justify-center">
-        <h1 className="text-white mt-8 font-semibold text-sm lg:text-base">
-        Range Program committe
+        <h1 className="text-white mt-8 font-semibold text-sm lg:text-xl">
+          JUBILO Program committe
         </h1>
         {/* <div className="flex items-center justify-center text-white gap-1">
           <a
@@ -73,11 +88,11 @@ function Footer() {
             ></span>
           </a>
         </div> */}
-        <h1 className="text-gray-100  mb-2">
+        <h1 className="text-gray-100  -mt-3 mb-5">
           <span className="text-xl">&copy;</span> Designed <a href='https://wa.link/m0k31s'>By Shafeeque Sa'adi</a>
         </h1>
       </footer>
- 
+
     </>
   )
 }

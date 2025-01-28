@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { scoreData } from '../src/api/apiCall';
 import toast, { Toaster } from 'react-hot-toast';
-
+import {teams}from './data'
 const ScoreAd = () => {
-  const teamPoints = [
-    'Al Fathah', 'Velliparamba', 'Kuttikkattoor', 'Kuttpadam', 'Kaniyath',
-    'Periya', 'Hidaya', 'Ummalathoor', 'Kovoor', 'Chevayoor',
-    'Poovattuparamba', 'Kottayithazham'
-  ];
+  
 
   const [formState, setFormState] = useState({});
   const [errors, setErrors] = useState({});
@@ -31,7 +27,7 @@ const ScoreAd = () => {
     const newErrors = {};
     let isValid = true;
 
-    teamPoints.forEach((team) => {
+    teams.forEach((team) => {
       if (!formState[team] && formState[team] !== 0) {
         newErrors[team] = 'Points are required';
         isValid = false;
@@ -73,7 +69,7 @@ const ScoreAd = () => {
         Results
       </h1>
       <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6 font-poppins">
-        {teamPoints.map((team) => (
+        {teams.map((team) => (
           <React.Fragment key={team}>
             <label className="w-full cursor-pointer border p-3">
               {team === 'ManjeriEast' ? "Manjeri East" : team === 'ManjeriWest' ? "Manjeri West" : team}

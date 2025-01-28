@@ -122,7 +122,7 @@ function UserSide() {
   const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-     <Carousel/>
+     <Home/>
 
       <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">

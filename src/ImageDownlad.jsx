@@ -52,7 +52,7 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
               src={image}
               alt="Background"
             />
-            <div className="absolute top-36 left-12  right-0 bottom-0 flex flex-col ">
+            <div className="absolute top-40 left-12  right-0 bottom-0 flex flex-col ">
               <div className="text-start ">
                 <div className={`text-xs poppins-light ${color}`}>
                   {results.category}

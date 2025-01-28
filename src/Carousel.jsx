@@ -37,7 +37,7 @@ const Carousel = () => {
       data-carousel="slide"
     >
       {/* Carousel wrapper */}
-      <div className="relative h-[100vh] overflow-hidden  md:h-screen">
+      <div className="relative   h-96 md:h-[100vh]">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -49,7 +49,7 @@ const Carousel = () => {
             <img
               src={slide}
               alt={`Slide ${index + 1}`}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover "
             />
           </div>
         ))}
