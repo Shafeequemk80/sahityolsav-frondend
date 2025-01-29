@@ -18,15 +18,15 @@ function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-5 md:mx-52   px-4 py-8 ">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Admin Dashboard</h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 mb-6">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6  mb-6">
           {cards.map((card, index) => (
             <div
               key={index}
               onClick={() => navigate(card.path)}
-              className={`p-6 rounded-lg shadow-lg ${card.color} text-white flex flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer`}
+              className={`p-6 rounded-lg shadow-lg ${card.color} text-white flex flex-col items-center justify-center  hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer`}
             >
               <div className="text-4xl mb-4">{card.icon}</div>
               <h3 className="text-lg font-semibold">{card.title}</h3>
@@ -38,17 +38,17 @@ function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div
             onClick={() => navigate("/")}
-            className="p-4 rounded-lg shadow-lg bg-indigo-500 text-white flex flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
+            className="p-4 rounded-lg shadow-lg bg-indigo-500 text-white flex  flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
           >
             <div className="text-4xl mb-2">
               <FaHome />
             </div>
             <h3 className="text-lg font-semibold">Go to Home</h3>
           </div>
-          
+
           <div
             onClick={handleLogout}
-            className="p-4 rounded-lg shadow-lg bg-red-500 text-white flex flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
+            className="p-4 rounded-lg shadow-lg bg-red-500 text-white flex flex-col  items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
           >
             <div className="text-4xl mb-2">
               <FaSignOutAlt />
