@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { categories, itemsByCategory } from "./data.js";
-import { baseUrl, getDataServer } from "./api/apiCall.js";
+import { categories, itemsByCategory } from "../data.js";
+import { baseUrl, getDataServer } from "../api/apiCall.js";
 
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Footer.jsx";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getallresult } from "./api/apiCall";
+import { getallresult } from "../api/apiCall";
 import toast, { Toaster } from "react-hot-toast";
 
 function AllResult() {
@@ -25,10 +25,10 @@ function AllResult() {
     const filteredResults = results.filter(
         (element) =>
             element.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.item.toLowerCase().includes(searchQuery.toLowerCase())     ||
+            element.item.toLowerCase().includes(searchQuery.toLowerCase()) ||
             element.result[0]?.firstPrice.toLowerCase().includes(searchQuery.toLowerCase()) ||
             element.result[1]?.secPrice.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.result[2]?.thirdPrice.toLowerCase().includes(searchQuery.toLowerCase()) 
+            element.result[2]?.thirdPrice.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (

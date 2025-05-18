@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { categories, itemsByCategory, teams } from "./data.js";
-import { postDataServer } from "./api/apiCall.js";
+import { categories, itemsByCategory, teams } from "../data.js";
+import { postDataServer } from "../api/apiCall.js";
 import {  useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 function AdminSide() {
@@ -56,15 +56,17 @@ function AdminSide() {
     })
   };
 
+  const divResult='flex flex-col gap-2 bg-[#ffe7b0] rounded px-5 py-6'
+  const textResult='text-2xl font-semibold text-black  rounded'
   return (
     <div>
       <form
         onSubmit={handlesumbit}
         className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 lg:px-20 xl:px-56"
       >
-<div className="flex flex-col lg:flex-row justify-between items-center mb-4">
-  <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-0">Upload Results Here</h2>
-  <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto text-center">
+<div className="flex flex-col lg:flex-row justify-between items-center ">
+  <h2 className="text-3xl lg:text-4xl font-bold ">Upload Results Here</h2>
+  {/* <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto text-center">
     <button 
       onClick={() => navigate('/admin/AddImage')}
       className="px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
@@ -77,12 +79,12 @@ function AdminSide() {
     >
       Go Home
     </button>
-  </div>
+  </div> */}
 </div>
 
     
         <div className="flex flex-col space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-7 lgLgap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-7 lg:gap-10">
             <div className="flex flex-col gap-2">
               <label for="category" className="text-lg font-medium ">
                 Category
@@ -121,8 +123,8 @@ function AdminSide() {
           </div>
           <div className="grid grid-cols-1 grid-rows-3 gap-7 lg:gap-10">
             {/* first */}
-            <div className="flex flex-col gap-2">
-              <h1 className="text-lg font-semibold bg2 p-3 px-5 w-full rounded-t-3xl bg-opacity-50">
+            <div className={divResult}>
+              <h1 className={textResult}>
                 First Price
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-5">
@@ -159,8 +161,8 @@ function AdminSide() {
               </div>
             </div>
             {/* second */}
-            <div className="flex flex-col gap-2">
-              <h1 className="text-lg font-semibold bg2 p-3 px-5 w-full rounded-t-3xl bg-opacity-50">
+            <div className={divResult}>
+              <h1 className={textResult}>
                 Second Price
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-5">
@@ -198,8 +200,8 @@ function AdminSide() {
             </div>
 
             {/* third */}
-            <div className="flex flex-col gap-2">
-              <h1 className="text-lg font-semibold bg2 p-3 px-5 w-full rounded-t-3xl bg-opacity-50">
+            <div className={divResult}>
+              <h1 className={textResult}>
                 Third Price
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-5">

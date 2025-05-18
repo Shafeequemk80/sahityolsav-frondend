@@ -4,14 +4,17 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import "./global.css";
 import "./index.css";
 
-import UserSide from "./UserSide.jsx";
-import AdminSide from "./AdminSide.jsx";
-import ImageUpload from "./ImageUpload.jsx";
-import AllResult from "./AllResult.jsx";
-import ScoreAd from "./ScoreAd.jsx";
-import Login from "./Login.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx";
-import AdminDashboard from "./AdminDashboard.jsx";
+import UserSide from "./users/UserSide.jsx";
+import AdminSide from "./admin/AdminSide.jsx";
+import ImageUpload from "./admin/ImageUpload.jsx";
+import AllResult from "./admin/AllResult.jsx";
+import ScoreAd from "./admin/ScoreAd.jsx";
+import Login from "./admin/Login.jsx";
+import ProtectedRoute from "./admin/ProtectedRoute.jsx";
+import AdminDashboard from "./admin/AdminDashboard.jsx";
+import AddBrochure from "./admin/AddBrochure.jsx";
+import AddTeam from "./admin/AddTeam.jsx";
+
 const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -57,6 +60,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           element={
             <ProtectedRoute>
               <ScoreAd />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="admin/addbrochure"
+          element={
+            <ProtectedRoute>
+              <AddBrochure />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="admin/addteam"
+          element={
+            <ProtectedRoute>
+              <AddTeam />
             </ProtectedRoute>
           }
         />

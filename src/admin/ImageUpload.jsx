@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl, ImageUploadServer } from "./api/apiCall";
+import { baseUrl, ImageUploadServer } from "../api/apiCall";
 import toast, { Toaster } from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 
@@ -22,7 +22,7 @@ const ImageUpload = () => {
           data.image1.image
             ? data.image1.image
             : null,
-            data.image2.image
+          data.image2.image
             ? data.image2.image
             : null,
           data.image3.image
@@ -30,15 +30,15 @@ const ImageUpload = () => {
             : null,
         ];
 
-        const newColor=[
-            data.image1.color? data.image1.color: null,
-            data.image2.color? data.image2.color: null,
-            data.image3.color?data.image3.color: null,
+        const newColor = [
+          data.image1.color ? data.image1.color : null,
+          data.image2.color ? data.image2.color : null,
+          data.image3.color ? data.image3.color : null,
         ]
 
         setImages(newImages);
         setColor(newColor)
-       
+
 
         // Logging the URLs directly
         newImages.forEach((image, index) => {
@@ -46,7 +46,8 @@ const ImageUpload = () => {
             console.log(`Image ${index + 1} URL: ${image}`);
           }
         });
-      
+        
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -54,9 +55,12 @@ const ImageUpload = () => {
 
     fetchData();
   }, []);
+
+
   setTimeout(() => {
     setLoading(false);
   }, 3000);
+
   const handleImageClick = (index) => {
     document.getElementById(`fileInput${index}`).click();
   };
@@ -111,61 +115,61 @@ const ImageUpload = () => {
       )}
 
       <div className="px-4 py-6 sm:px-8 sm:py-8 bg-[#ffe7b0] lg:px-32 lg:py-12 overflow-scroll hide-scrollbar">
-     <div className="flex flex-col text-center  w-full justify-center mb-10">
-    
-    <h2 className="text-lg md:text-2xl w-full   font-semibold ">
-    Upload your results here </h2>
-  <p className="text-red-600 pt-3">Make sure the image is square (1:1 aspect ratio) and don't forget to select the background color type.</p>
-     </div>
+        <div className="flex flex-col text-center  w-full justify-center mb-10">
 
-     
+          <h2 className="text-lg md:text-2xl w-full   font-semibold ">
+            Upload your results here </h2>
+          <p className="text-red-600 pt-3">Make sure the image is square (1:1 aspect ratio) and don't forget to select the background color type.</p>
+        </div>
+
+
         <form onSubmit={handleSubmit}>
           <div className="flex justify-center ">
-          <div
-          
-          className="grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 gap-10">
-            {images.map((image, index) => (
-              <div>
-              <div
-                key={index}
-                className="relative drop-shadow   border-solid border-8  border-[#c7d9a7] h-[350px] w-[350px]"
-              >
-                <img
-                  src={image || "https://via.placeholder.com/350"}
-                  alt={`Design ${index + 1}`}
-                  className="w-full h-full  object-cover  cursor-pointer"
-                  onClick={() => handleImageClick(index)}
-                />
-                <input
-                  id={`fileInput${index}`}
-                  type="file"
-                  name={`image${index + 1}`}
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => handleImageUpload(e, index)}
-                />
-           
-              </div>
-                   <div className="mt-2 flex flex-col  text-center mb-5  justify-center">
-                   <div className="mb-4 mt-2">
-                   <label className="poppins-regular ">Select Backgorund type</label>
-                   </div>
+            <div
+
+              className="grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 gap-10">
+              {images.map((image, index) => (
                 <div>
-                <select
-                   value={color[index]}
-                     onChange={handleColortype(index)}
-                     className="p-2  font-mediumpx-4 py-2 bg-black text-white font-semibold rounded-md  focus:outline-none focus:ring-2 "
-                   required
-                   >
-                     
-                     <option   value={"white"}>Dark</option>
-                     <option  defaultChecked={true} value={"black"}>Light</option>
-                   </select>
+                  <div
+                    key={index}
+                    className="relative drop-shadow   border-solid border-8  border-[#c7d9a7] h-[350px] w-[350px]"
+                  >
+                    <img
+                      src={image || "https://via.placeholder.com/350"}
+                      alt={`Design ${index + 1}`}
+                      className="w-full h-full  object-cover  cursor-pointer"
+                      onClick={() => handleImageClick(index)}
+                    />
+                    <input
+                      id={`fileInput${index}`}
+                      type="file"
+                      name={`image${index + 1}`}
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleImageUpload(e, index)}
+                    />
+
+                  </div>
+                  <div className="mt-2 flex flex-col  text-center mb-5  justify-center">
+                    <div className="mb-4 mt-2">
+                      <label className="poppins-regular ">Select Backgorund type</label>
+                    </div>
+                    <div>
+                      <select
+                        value={color[index]}
+                        onChange={handleColortype(index)}
+                        className="p-2  font-mediumpx-4 py-2 bg-black text-white font-semibold rounded-md  focus:outline-none focus:ring-2 "
+                        required
+                      >
+
+                        <option value={"white"}>Dark</option>
+                        <option defaultChecked={true} value={"black"}>Light</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                 </div>
-                 </div>
-            ))}
-          </div>
+              ))}
+            </div>
           </div>
           <div className="flex justify-center mt-5">
             <button

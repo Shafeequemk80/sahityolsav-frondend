@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaImage, FaClipboardList, FaUsers, FaListAlt, FaSignOutAlt, FaHome } from "react-icons/fa";
+import { FaImage, FaClipboardList, FaUsers, FaListAlt, FaSignOutAlt, FaHome,FaImages ,FaLayerGroup    } from "react-icons/fa";
 
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -9,6 +9,8 @@ function AdminDashboard() {
     { title: "Add Result", icon: <FaClipboardList />, color: "bg-green-500", path: "/admin/addresult" },
     { title: "Add Team Point", icon: <FaUsers />, color: "bg-yellow-500", path: "/admin/addteampoint" },
     { title: "All Results", icon: <FaListAlt />, color: "bg-purple-500", path: "/admin/allresult" },
+    { title: "Add Brochure", icon: <FaImages />, color: "bg-orange-500", path: "/admin/addbrochure" },
+    { title: "Add team", icon: <FaLayerGroup  />, color: "bg-lime-500", path: "/admin/addteam" },
   ];
 
   const handleLogout = () => {
@@ -21,7 +23,7 @@ function AdminDashboard() {
       <div className="container mx-5 md:mx-52   px-4 py-8 ">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Admin Dashboard</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6  mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  mb-6">
           {cards.map((card, index) => (
             <div
               key={index}
@@ -35,7 +37,7 @@ function AdminDashboard() {
         </div>
 
         {/* Home and Logout Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div
             onClick={() => navigate("/")}
             className="p-4 rounded-lg shadow-lg bg-indigo-500 text-white flex  flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
