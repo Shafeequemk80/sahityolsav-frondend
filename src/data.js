@@ -1,5 +1,15 @@
 const categories = ["General", "Junior", "Premier", "Senior", "Sub junior"];
 const teams = ["Mustansiriyah", "Tahriyya", "Qarawiyyah"];
+const fieldNames = {
+  itemId: "Item",
+  firstPrize: "First Prize",
+  firstTeam: "First Team",
+  secPrize: "Second Prize",
+  secTeam: "Second Team",
+  thirdPrize: "Third Prize",
+  thirdTeam: "Third Team",
+  categoryId: "Category",
+};
 
 const itemsByCategory = {
   General: [
@@ -120,6 +130,16 @@ const itemsByCategory = {
   ],
 };
 
+const steps = [
+  "Add all teams, categories, and items before starting the program.",
+  "You can start adding results only after starting the program.",
+  "Once the program is started, you cannot edit or delete teams, categories, or items.",
+  "If you need to make changes, you must stop the program first.",
+  "Stopping the program will delete all added results.",
+  "There's also a reset button to clear all data and start fresh.",
+];
+
+
 const slides = [
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_spi_zjcq6h.jpg",
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/357480395_572652891493163_603989940549611415_n_nyk12s.jpg",
@@ -129,4 +149,4 @@ const slides = [
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982139/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_2_gywuvn.jpg",
   "https://res.cloudinary.com/do0mvctrk/image/upload/v1721982138/SSF_Kunnamangalam_Division_30th_Edition_Sahityotsav_2023July_01_02At_Kunnamangalam_sahityotsav2023_sahityotsav_30th_edition_arts_culture_literature_revolution_students_knowledge_competetion_winner_3_rh0wn1.jpg",
 ];
-export { categories, teams, itemsByCategory, slides };
+export { categories, teams, itemsByCategory, slides ,steps,fieldNames};

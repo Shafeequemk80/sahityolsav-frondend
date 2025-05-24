@@ -4,9 +4,25 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 console.log(baseUrl);
 //const baseUrl = "https://sahityolsav-backred.onrender.com";
+
+async function startProgram() {
+  const response = await axios.get(
+    `${baseUrl}/startprogram`
+  );
+  
+  return response.data;
+}
+
+async function checkProgram() {
+  const response = await axios.get(
+    `${baseUrl}/checkstatprogram`
+  );
+  
+  return response.data;
+}
 async function getDataServer(item, category) {
   const response = await axios.get(
-    `${baseUrl}/?item=${item}&category=${category}`
+    `${baseUrl}/getresult/?item=${item}&category=${category}`
   );
   console.log(response);
   return response.data;
@@ -15,7 +31,7 @@ async function getDataServer(item, category) {
 async function postDataServer(postData) {
   try {
     console.log("apicalled");
-    const response = await axios.post(`${baseUrl}/data`, postData);
+    const response = await axios.post(`${baseUrl}/saveresult`, postData);
     console.log("apicalledres");
     return response.data;
   } catch (error) {
@@ -107,8 +123,19 @@ async function getTeam() {
   const response = await axios.get(`${baseUrl}/getteamname`);
   return response.data;
 }
+
+async function deleteTeam(teamId) {
+  const response = await axios.get(`${baseUrl}/deleteteam/${teamId}`);
+  return response.data;
+}
+async function editTeam(teamId, teamName) {
+  const response = await axios.put(`${baseUrl}/editteam`, { teamId, teamName });
+  return response.data;
+}
 export {
   baseUrl,
+  startProgram,
+  checkProgram,
   postDataServer,
   getDataServer,
   ImageUploadServer,
@@ -121,4 +148,6 @@ export {
   addBrochure,
   addTeamName,
   getTeam,
+  deleteTeam,
+  editTeam,
 };

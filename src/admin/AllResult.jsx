@@ -8,13 +8,22 @@ function AllResult() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const toastId = toast.loading("Waiting...");
             try {
-                const response = await getallresult();
-                setResults(response.data);
-                toast.success("All results fetched successfully", { id: toastId });
+                const response = await toast.promise(
+                    getallresult(),
+                    {
+                        loading: 'loading...',
+                        success: "All results fetched successfully",
+                        error: (err) => err?.response?.data?.message || err.message || 'Something is wrong'
+                    })
+                if (response.success == true) {
+                    console.log('error');
+
+                    setResults(response.data);
+                }
+
             } catch (error) {
-                toast.error("Failed to fetch results", { id: toastId });
+                console.log(error);
             }
         };
 
@@ -56,7 +65,7 @@ function AllResult() {
                     <tbody>
                         {filteredResults.length > 0 ? (
                             filteredResults.map((element, index) => (
-                                <tr key={index} className={`${index % 2 === 1 ? "bg-gray-100" : ""}`}>
+                                <tr key={index + 300} className={`${index % 2 === 1 ? "bg-gray-100" : ""}`}>
                                     <td className="py-2 px-4 border-b">{index + 1}</td>
                                     <td className="py-2 px-4 border-b">{element.category}</td>
                                     <td className="py-2 px-4 border-b">{element.item}</td>

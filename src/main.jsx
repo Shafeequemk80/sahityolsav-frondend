@@ -5,7 +5,7 @@ import "./global.css";
 import "./index.css";
 
 import UserSide from "./users/UserSide.jsx";
-import AdminSide from "./admin/AdminSide.jsx";
+import AdminSide from "./admin/AddResults.jsx";
 import ImageUpload from "./admin/ImageUpload.jsx";
 import AllResult from "./admin/AllResult.jsx";
 import ScoreAd from "./admin/ScoreAd.jsx";
@@ -14,6 +14,11 @@ import ProtectedRoute from "./admin/ProtectedRoute.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AddBrochure from "./admin/AddBrochure.jsx";
 import AddTeam from "./admin/AddTeam.jsx";
+import AddTheme from "./admin/AddTheme.jsx";
+import AddCategory from "./admin/AddCategory.jsx";
+import AddItem from "./admin/AddItem.jsx";
+import StartProgram from "./admin/StartProgram.jsx";
+import AddResults from "./admin/AddResults.jsx";
 
 const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
 
@@ -39,14 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </ProtectedRoute>
           }
         />
-             <Route
-          path="admin/addresult"
-          element={
-            <ProtectedRoute>
-              <AdminSide />
-            </ProtectedRoute>
-          }
-        />
+    
         <Route
           path="admin/allresult"
           element={
@@ -76,6 +74,46 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           element={
             <ProtectedRoute>
               <AddTeam />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="admin/addtheme"
+          element={
+            <ProtectedRoute>
+              <AddTheme />
+            </ProtectedRoute>
+          }
+          />
+         <Route
+          path="admin/addcategory"
+          element={
+            <ProtectedRoute>
+              <AddCategory/>
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="admin/additem"
+          element={
+            <ProtectedRoute>
+              <AddItem/>
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="admin/start"
+          element={
+            <ProtectedRoute>
+              <StartProgram/>
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="admin/addresult"
+          element={
+            <ProtectedRoute>
+              <AddResults/>
             </ProtectedRoute>
           }
         />

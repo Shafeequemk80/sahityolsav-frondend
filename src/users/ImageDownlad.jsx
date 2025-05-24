@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import toast from "react-hot-toast";
 
-function ImageDownload({ results, color, category, selectedItem, image }) {
+function ImageDownload({ results,category,item, color, image }) {
   const downloadImageRef = useRef(null);
+
 
   // Define class names in variables
   const containerClass = "mx-auto drop-shadow-xl   ";
@@ -31,7 +32,7 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
     const link = document.createElement("a");
 
     link.href = data;
-    link.download = `${category}-${selectedItem}.jpg`;
+    link.download = `${category}-${item}.jpg`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -40,7 +41,7 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
 
   return (
     <>
-      {results && (
+      {results?.result && (
          <div className="">
           <div
             className="relative mx-auto drop-shadow-xl  text-center   h-[350px] w-[350px] mb-24"
@@ -55,22 +56,22 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
             <div className="absolute top-40 left-12  right-0 bottom-0 flex flex-col ">
               <div className="text-start ">
                 <div className={`text-xs poppins-light ${color}`}>
-                  {results.category}
+                  {category}
                 </div>
                 <div className={`text-sm poppins-medium -mt-1  ${color}`}>
-                  {results.item}
+                  {item}
                 </div>
               </div>
 
               <div className="text-start mt-3 pl-2">
-                {results.result.map((result, index) => (
+                {results?.result.map((result, index) => (
                   <div key={index}>
                     <div className={`text-[11px] poppins-semibold ${color}`}>
-                      {result.firstPrice || result.secPrice || result.thirdPrice
+                      {result?.firstPrize || result?.secPrize || result?.thirdPrize
                         ? (
-                            result.firstPrice ||
-                            result.secPrice ||
-                            result.thirdPrice
+                            result?.firstPrize ||
+                            result?.secPrize ||
+                            result?.thirdPrize
                           )
                             .toLowerCase()
                             .replace(/^\w/, (c) => c.toUpperCase())
@@ -78,7 +79,8 @@ function ImageDownload({ results, color, category, selectedItem, image }) {
                     </div>
 
                     <div className={`text-[8px] mb-2 -mt-1 poppins-light ${color}`}>
-                      {result.firstUnit || result.secUnit || result.thirdUnit}
+                      {result?.firstTeam || result?.secTeam || result?.thirdTeam
+                      }
                     </div>
                   </div>
                 ))}

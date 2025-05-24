@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { categories, itemsByCategory } from "../data.js";
 import { baseUrl, getDataServer } from "../api/apiCall.js";
 
 import toast, { Toaster } from "react-hot-toast";
@@ -10,17 +9,20 @@ import axios from "axios";
 import Home from "./Home.jsx";
 import Carousel from "./Carousel.jsx";
 import TeamPoint from "./TeamPoint.jsx";
+import { getCategory, getItem } from "../api/cateGoryAnditem.js";
 
 
 
 function UserSide() {
   const [category, setCategory] = useState("");
+  const [toastData, setTostData] = useState({});
   const [selectedItem, setSelectedItem] = useState("");
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [results, setResults] = useState(null);
   const [images, setImages] = useState([null, null, null]);
   const [color, setColor] = useState([null, null, null]);
-  const [buttonShow, setButtonShow]=useState(false)
+  const [buttonShow, setButtonShow] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,8 +41,28 @@ function UserSide() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   useEffect(() => {
-    
+
+
+    async function fetchData() {
+      const responce = await toast.promise(
+        getCategory(),
+        {
+          loading: 'Loading...',
+          success: 'Category Data successfully!',
+          error: 'Failed to fetch Team Data.',
+        }
+      )
+      console.log(responce.data);
+
+      setCategories(responce.data)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+
     const fetchData = async () => {
       try {
         const response = await axios.get(`${baseUrl}/showImage`);
@@ -49,9 +71,9 @@ function UserSide() {
 
         const newImages = [
           data.image1.image
-            ?data.image1.image
+            ? data.image1.image
             : null,
-            data.image2.image
+          data.image2.image
             ? data.image2.image
             : null,
           data.image3.image
@@ -59,15 +81,15 @@ function UserSide() {
             : null,
         ];
 
-        const newColor=[
-            data.image1.color? data.image1.color: null,
-            data.image2.color? data.image2.color: null,
-            data.image3.color?data.image3.color: null,
+        const newColor = [
+          data.image1.color ? data.image1.color : null,
+          data.image2.color ? data.image2.color : null,
+          data.image3.color ? data.image3.color : null,
         ]
 
         setImages(newImages);
         setColor(newColor)
-  
+
 
         // Logging the URLs directly
         newImages.forEach((image, index) => {
@@ -82,11 +104,25 @@ function UserSide() {
 
     fetchData();
   }, []);
+  
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-    setItems(itemsByCategory[selectedCategory] || []);
-    setResults(null);
+    async function fetchData() {
+      const responce = await toast.promise(
+        getItem(selectedCategory),
+        {
+          loading: 'Loading...',
+          success: 'Category Data successfully!',
+          error: 'Failed to fetch Team Data.',
+        }
+      )
+
+      setItems(responce.data || [])
+      
+    }
+    fetchData()
+
   };
 
   const handleItemData = async (event) => {
@@ -96,12 +132,22 @@ function UserSide() {
     try {
       toast.loading("Waiting...");
       const response = await getDataServer(itemValue, category);
-      setResults(response.data);
-      toast.dismiss();
-      if (response.data) {
-        toast.success(`Yes, ${category} ${itemValue} result published`);
-      } else {
-        toast(`NO, ${category} ${selectedItem} result published Yet`);
+
+      const{success,message, data}=response      
+      console.log(data);
+      
+     
+setTostData({
+  category:data?.category?.categoryName,
+  item:data?.item?.itemName,
+})
+toast.dismiss();
+setResults(data);
+if (success) {
+  toast.success(`Yes, ${data?.category?.categoryName} ${data?.item?.itemName} result published`);
+} else {
+       
+        toast(`NO,  ${data?.category?.categoryName} ${data?.item?.itemName}result published Yet`);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -122,7 +168,7 @@ function UserSide() {
   const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-     <Home/>
+      <Home />
 
       <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
@@ -139,8 +185,8 @@ function UserSide() {
             >
               <option value="">Select Category</option>
               {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
+                <option key={category._id} value={category?._id}>
+                  {category?.categoryName}
                 </option>
               ))}
             </select>
@@ -156,96 +202,98 @@ function UserSide() {
             >
               <option value="">Select Item</option>
               {items.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+                <option key={item._id} value={item?._id}>
+                  {item?.itemName}
                 </option>
               ))}
             </select>
           </div>
         </div>
 
-        {results && (
+        {results?.result&& ( 
+          <>
           <div className="flex flex-col ml-16 md:flex-row justify-between  lg:px-52 ">
             <div className={nameRow}>
               <div className={position}>01</div>
               <div className="text-start">
-                <p className={resultName}>{results.result[0].firstPrice}</p>
-                <p className={resultItem}>{results.result[0].firstUnit}</p>
+                <p className={resultName}>{results.result[0].firstPrize}</p>
+                <p className={resultItem}>{results.result[0].firstTeam}</p>
               </div>
             </div>
             <div className={nameRow}>
               <div className={position}>02</div>
               <div className="text-start">
-                <p className={resultName}>{results.result[1].secPrice}</p>
-                <p className={resultItem}>{results.result[1].secUnit}</p>
+                <p className={resultName}>{results.result[1].secPrize}</p>
+                <p className={resultItem}>{results.result[1].secTeam}</p>
               </div>
             </div>
             <div className={nameRow}>
               <div className={position}>03</div>
               <div className="text-start">
-                <p className={resultName}>{results.result[2].thirdPrice}</p>
-                <p className={resultItem}>{results.result[2].thirdUnit}</p>
+                <p className={resultName}>{results.result[2].thirdPrize}</p>
+                <p className={resultItem}>{results.result[2].thirdTeam
+                }</p>
               </div>
             </div>
           </div>
-        )}
 
         <div
-        
-          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${
-            results ? "bg-slate-100" : ""
-          } lg:px-28 `}
+
+          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${results ? "bg-slate-100" : ""
+            } lg:px-28 `}
         >
           <ImageDownlad
             results={results}
-            category={category}
-            selectedItem={selectedItem}
+            category={results?.category?.categoryName}
+            item={results?.item?.itemName}
             image={images[0]}
             color={`text-${color[0]}`}
           />
           <ImageDownlad
             results={results}
-            category={category}
-            selectedItem={selectedItem}
+            category={results?.category?.categoryName}
+            item={results?.item?.itemName}
             image={images[1]}
             color={`text-${color[1]}`}
           />
           <ImageDownlad
             results={results}
-            category={category}
-            selectedItem={selectedItem}
+            category={results?.category?.categoryName}
+            item={results?.item?.itemName}
             image={images[2]}
             color={`text-${color[2]}`}
           />
-          
+
         </div>
-        
+        </>
+)}
+
       </div>
 
-    <div className="flex justify-center">
-    {results == false && (
+      <div className="flex justify-center">
+        {results?.result ==false&& (
           <div className="bg-yellow-100 border-l-4 mx-10 text-center border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
             <h2 className="font-bold text-lg">Notice:</h2>
             <p className="mt-2">
-              The results for the {category} {selectedItem} Competition have not
-              yet been published. Please check back later for updates.
+             { `The results for the ${toastData.category} ${toastData.item} Competition have not
+              yet been published. Please check back later for updates`}
             </p>
           </div>
         )}
-    </div>
-    <TeamPoint/>
+      </div>
+      <TeamPoint />
       <Footer />
-    {buttonShow&&(
+      {buttonShow && (
         <button
-        onClick={scrollToTop}
-        className="flex items-center justify-center z-50 fixed bottom-10 right-10  size-11 bg-[#e8002c] text-white rounded-full"
-      >
-        <span
-          className="iconify text-xl lg:text-2xl"
-          data-icon="mdi:arrow-up"
-        ></span>
-      </button>
-    )}
+          onClick={scrollToTop}
+          className="flex items-center justify-center z-50 fixed bottom-10 right-10  size-11 bg-[#e8002c] text-white rounded-full"
+        >
+          <span
+            className="iconify text-xl lg:text-2xl"
+            data-icon="mdi:arrow-up"
+          ></span>
+        </button>
+      )}
       <Toaster />
     </>
   );

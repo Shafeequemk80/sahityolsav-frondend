@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 
 const ImageUpload = () => {
+  let dummy="https://dummyimage.com/350x350/000/fff.png&text=Please+Click+me"
   const [images, setImages] = useState([null, null, null]);
   const [uploadedFiles, setUploadedFiles] = useState([null, null, null]);
   const [loading, setLoading] = useState(false);
@@ -41,11 +42,7 @@ const ImageUpload = () => {
 
 
         // Logging the URLs directly
-        newImages.forEach((image, index) => {
-          if (image) {
-            console.log(`Image ${index + 1} URL: ${image}`);
-          }
-        });
+      
         
 
       } catch (error) {
@@ -108,12 +105,12 @@ const ImageUpload = () => {
   };
   return (
     <>
-      {loading && (
+      {loading ? (
         <div className="w-[100vw] h-[100vh] flex justify-center items-center  ">
           <BarLoader />
         </div>
-      )}
-
+      ):
+(
       <div className="px-4 py-6 sm:px-8 sm:py-8 bg-[#ffe7b0] lg:px-32 lg:py-12 overflow-scroll hide-scrollbar">
         <div className="flex flex-col text-center  w-full justify-center mb-10">
 
@@ -135,7 +132,7 @@ const ImageUpload = () => {
                     className="relative drop-shadow   border-solid border-8  border-[#c7d9a7] h-[350px] w-[350px]"
                   >
                     <img
-                      src={image || "https://via.placeholder.com/350"}
+                      src={image ||dummy }
                       alt={`Design ${index + 1}`}
                       className="w-full h-full  object-cover  cursor-pointer"
                       onClick={() => handleImageClick(index)}
@@ -181,7 +178,7 @@ const ImageUpload = () => {
           </div>
         </form>
         <Toaster />
-      </div>
+      </div>)}
     </>
   );
 };

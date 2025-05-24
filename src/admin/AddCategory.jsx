@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { getTeam, addTeamName, deleteTeam, editTeam } from '../api/apiCall';
 import toast, { Toaster } from 'react-hot-toast';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2'
 import { FaEdit } from "react-icons/fa";
+import { addCategory, deleteCategory, editCategory, getCategory } from '../api/cateGoryAnditem';
 import { checkProgramStarted } from '../utils/checkProgramStarted';
 
 
-const AddTeam = () => {
+const AddCategory = () => {
     const [formState, setFormState] = useState('');
     const [errors, setErrors] = useState('');
-    const [teams, setTeams] = useState([]);
+    const [category, setCategory] = useState([]);
     useEffect(() => {
 
 
         async function fetchData() {
             const responce = await toast.promise(
-                getTeam(),
+                getCategory(),
                 {
                     loading: 'Loading...',
-                    success: 'Team Data successfully!',
+                    success: 'Category Data successfully!',
                     error: 'Failed to fetch Team Data.',
                 }
             )
             console.log(responce.data);
 
-            setTeams(responce.data)
+            setCategory(responce.data)
         }
         fetchData()
     }, [])
@@ -44,28 +44,28 @@ const AddTeam = () => {
 
         const trimmed = formState.trim()
         if (trimmed === "") {
-            setErrors('Team name is required')
+            setErrors('category name is required')
             return;
         }
 
-        const isDullicate = teams.some((team) => team.teamName.toLowerCase() === trimmed.toLowerCase())
+        const isDullicate = category.some((cate) => cate?.categoryName.toLowerCase() === trimmed.toLowerCase())
 
         if (isDullicate) {
-            setErrors('Team Name already exists')
+            return setErrors('Category Name already exists')
         }
         try {
 
             const response = await toast.promise(
-                addTeamName(trimmed),
+                addCategory(trimmed),
                 {
                     loading: 'Loading...',
-                    success: 'Team Data successfully!',
-                    error: 'Failed to fetch Team Data.',
+                    success: 'Category Data successfully!',
+                    error: 'Failed to add Category ',
                 }
             )
             console.log(response);
 
-            setTeams((prev) => [response.data, ...prev]);
+            setCategory((prev) => [response.data, ...prev]);
             setErrors('')
             setFormState('')
 
@@ -74,11 +74,10 @@ const AddTeam = () => {
 
         }
     };
-
     const handleDeleteTeam = async (id) => {
-  if(await checkProgramStarted())return
+        
+        if(await checkProgramStarted())return
         Swal.fire({
-
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -86,33 +85,66 @@ const AddTeam = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                async function remove(id) {
-                    const response = await toast.promise(deleteTeam(id),
-                        {
-                            loading: 'Deleting...',
-                            success: "Team Deleted successfully",
-                            error: (err) => err.data.message || 'Failed to deleting'
-                        })
-                    if (response.success == true) {
-                        const filteredData = teams.filter((item) => (
-                            item._id !== id
-                        ))
-                        setTeams(filteredData)
-                    }
-                }
-                remove(id)
+                try {
+                    toast.loading('Deleting...');
 
+                    const response = await deleteCategory(id); // Axios call
+                    toast.dismiss(); // remove loading toast
+                    console.log(response);
+
+                    if (response?.success === true) {
+                        toast.success('Category deleted successfully');
+
+                        const filteredData = category.filter(item => item._id !== id);
+                        setCategory(filteredData);
+                    } else {
+                        const errorMessage = response?.message;
+
+                        if (errorMessage === "This category added items") {
+                            Swal.fire({
+                                title: "❌ Deletion Failed!",
+                                html: `🎉 ${errorMessage} is already used in an item. Please delete that item first.`,
+                                icon: "warning"
+                            });
+                        } else {
+                            toast.error(errorMessage || 'Failed to deleted category');
+                            console.log(errorMessage, 'dsfad');
+
+                        }
+                    }
+
+                } catch (err) {
+                    toast.dismiss();
+
+                    const errorMessage = err?.response?.data?.message;
+                    if (errorMessage === "This category added items") {
+                        Swal.fire({
+                            title: "❌ Deletion Failed!",
+                            html: `🎉 ${errorMessage} is already used in an item. Please delete that item first.`,
+                            icon: "warning"
+                        });
+                    } else {
+
+                        Swal.fire({
+                            title: "⚠️ Error!",
+                            text: errorMessage || "Something went wrong!",
+                            icon: "error"
+                        });
+                    }
+
+                    toast.error(errorMessage || 'Something went wrong!');
+                }
             }
         });
-
-    }
+    };
 
     const handleEditTeam = async (id, currentName, index) => {
-          if(await checkProgramStarted())return
+
+        if(await checkProgramStarted())return
         const { value: newName } = await Swal.fire({
-            title: "Edit Team Name",
+            title: "Edit Category Name",
             input: "text",
             inputValue: currentName,
             showCancelButton: true,
@@ -123,18 +155,18 @@ const AddTeam = () => {
             },
             inputValidator: (value) => {
                 if (!value) {
-                    return "Team name cannot be empty!";
+                    return "Category name cannot be empty!";
                 }
             },
             preConfirm: async (value) => {
                 try {
-                    const response = await editTeam(id, value); // this should return { data, message }
+                    const response = await editCategory(id, value); // this should return { data, message }
 
 
                     // Update local state
-                    const newTeam = [...teams];
-                    newTeam[index] = { ...newTeam[index], teamName: value };
-                    setTeams(newTeam);
+                    const newCategory = [...category];
+                    newCategory[index] = { ...newCategory[index], categoryName: value };
+                    setCategory(newCategory);
 
                     return response?.data?.message; // needed to prevent modal from staying open
                 } catch (error) {
@@ -150,8 +182,8 @@ const AddTeam = () => {
         // Optional confirmation
         if (newName) {
             Swal.fire({
-                title: "✅ Team Updated!",
-                html: `🎉 Team name updated to <span style="color:#3085d6;">${newName}</span> successfully! 🎉`,
+                title: "✅ Category Updated!",
+                html: `🎉 Category name updated to <span style="color:#3085d6;">${newName}</span> successfully! 🎉`,
                 icon: "success"
             });
         }
@@ -162,7 +194,7 @@ const AddTeam = () => {
 
             <div className="border-x-2 border-b-2 border-theme_black w-full flex justify-center  items-center flex-col  md:pb-10 pt-6 px-4 lg:px-16">
                 <h1 className="mb-6 text-black font-poppins font-semibold  text-center text-3xl">
-                    Add Team
+                    Add Category
                 </h1>
                 <form onSubmit={handleSubmit} className="mb-16 flex justify-center items-center   flex-col  md:w-[50%] gap-6 font-poppins">
 
@@ -172,7 +204,7 @@ const AddTeam = () => {
                             <input
                                 type="text"
                                 className={`w-full cursor-pointer border border-theme_black p-3  placeholder:text-black mt-2 ${errors ? 'border-red-500' : ''}`}
-                                placeholder="Enter Team Name"
+                                placeholder="Enter category"
                                 value={formState}
                                 onChange={(e) => handlePointChange(e)}
                             />
@@ -184,35 +216,35 @@ const AddTeam = () => {
                         className="border border-theme_black cursor-pointer bg-gray-900 p-3 text-white font-medium col-span-5  w-full sm:col-span-2"
                         type="submit"
                     >
-                        Add Team
+                        Add Category
                     </button>
                 </form>
 
 
                 <div className="p-6 bg-[#FADFA1] mt-10 flex justify-center w-full">
                     <div className=" w-full lg:w-2/3">
-                        <h1 className="text-4xl text-center font-bold mb-6 text-black">Teams</h1>
+                        <h1 className="text-4xl text-center font-bold mb-6 text-black">Category</h1>
                         <div className="overflow-x-auto">
                             <table className="w-full bg-white shadow-lg rounded-lg">
                                 <thead>
                                     <tr className="bg-[#9fb973] text-white">
                                         <th className="py-md-3 px-md-4  py-1 px-1 rounded-tl-lg" scope="col">No</th>
-                                        <th className="py-md-3 px-md-4 py-1 px-1" scope="col">Team</th>
+                                        <th className="py-md-3 px-md-4 py-1 px-1" scope="col">Category</th>
                                         <th className="py-md-3 px-md-4 py-1 px-1 " scope="col">Edit</th>
                                         <th className="py-md-3 px-md-4 py-1 px-1 rounded-tr-lg" scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {teams.length > 0 ? (
-                                        teams.map((item, index) => (
+                                    {category?.length > 0 ? (
+                                        category?.map((item, index) => (
                                             <tr key={index} className={` ${index % 2 === 1 ? 'bg-orange-50' : 'bg-white'}`}>
                                                 <td className='py-3 px-4   text-lg font-semibold text-gray-800'>
                                                     {index + 1}
                                                 </td>
                                                 <td className="py-3 px-4 text-lg    text-gray-800">
-                                                    {item?.teamName}
+                                                    {item?.categoryName}
                                                 </td>
-                                                <td onClick={() => handleEditTeam(item?._id, item?.teamName, index)} className="y-3 px-4 text-lg  text-blue-800">
+                                                <td onClick={() => handleEditTeam(item?._id, item?.categoryName, index)} className="y-3 px-4 text-lg  text-blue-800">
                                                     <FaEdit />
 
                                                 </td>
@@ -240,4 +272,6 @@ const AddTeam = () => {
     );
 };
 
-export default AddTeam;
+
+
+export default AddCategory;

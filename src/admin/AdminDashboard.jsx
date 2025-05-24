@@ -1,17 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaImage, FaClipboardList, FaUsers, FaListAlt, FaSignOutAlt, FaHome,FaImages ,FaLayerGroup    } from "react-icons/fa";
+import { FaImage, FaClipboardList, FaUsers, FaListAlt, FaSignOutAlt, FaHome, FaImages, FaLayerGroup, FaEnvelopeOpenText } from "react-icons/fa";
+import { MdOutlinePowerSettingsNew } from "react-icons/md";
 
 function AdminDashboard() {
   const navigate = useNavigate();
   const cards = [
     { title: "Add Image", icon: <FaImage />, color: "bg-blue-500", path: "/admin/addImage" },
-    { title: "Add Result", icon: <FaClipboardList />, color: "bg-green-500", path: "/admin/addresult" },
-    { title: "Add Team Point", icon: <FaUsers />, color: "bg-yellow-500", path: "/admin/addteampoint" },
-    { title: "All Results", icon: <FaListAlt />, color: "bg-purple-500", path: "/admin/allresult" },
-    { title: "Add Brochure", icon: <FaImages />, color: "bg-orange-500", path: "/admin/addbrochure" },
-    { title: "Add team", icon: <FaLayerGroup  />, color: "bg-lime-500", path: "/admin/addteam" },
+    { title: "Add Result", icon: <FaClipboardList />, color: "bg-emerald-500", path: "/admin/addresult" },
+    { title: "Add Team", icon: <FaLayerGroup />, color: "bg-indigo-500", path: "/admin/addteam" },
+    { title: "Add Theme", icon: <FaEnvelopeOpenText />, color: "bg-pink-500", path: "/admin/addtheme" },
+    { title: "All Results", icon: <FaListAlt />, color: "bg-violet-500", path: "/admin/allresult" },
+    { title: "Add Brochure", icon: <FaImages />, color: "bg-rose-500", path: "/admin/addbrochure" },
+    { title: "Add Team Point", icon: <FaUsers />, color: "bg-amber-500", path: "/admin/addteampoint" },
+    { title: "Add Category", icon: <FaClipboardList />, color: "bg-cyan-500", path: "/admin/addcategory" },
+    { title: "Add Item", icon: <FaClipboardList />, color: "bg-teal-500", path: "/admin/additem" },
   ];
+  
+  
 
   const handleLogout = () => {
     localStorage.removeItem("isAdminLoggedIn");
@@ -46,6 +52,15 @@ function AdminDashboard() {
               <FaHome />
             </div>
             <h3 className="text-lg font-semibold">Go to Home</h3>
+          </div>
+          <div
+            onClick={() => navigate("/admin/start")}
+            className="p-4 rounded-lg shadow-lg bg-amber-500 text-white flex  flex-col items-center justify-center hover:shadow-2xl transition duration-300 ease-in-out cursor-pointer"
+          >
+            <div className="text-4xl mb-2">
+              <MdOutlinePowerSettingsNew />
+            </div>
+            <h3 className="text-lg font-semibold">Start</h3>
           </div>
 
           <div

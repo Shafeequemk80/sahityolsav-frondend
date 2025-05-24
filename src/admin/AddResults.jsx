@@ -1,27 +1,95 @@
-import React, { useState } from "react";
-import { categories, itemsByCategory, teams } from "../data.js";
-import { postDataServer } from "../api/apiCall.js";
-import {  useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { getTeam, postDataServer } from "../api/apiCall.js";
+import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-function AdminSide() {
-  const navigate= useNavigate()
+import { getCategory, getItem } from "../api/cateGoryAnditem.js";
+import { fieldNames } from "../data.js";
+import { canAddResult } from "../utils/checkProgramStarted.js";
+function AddResults() {
+  const navigate = useNavigate()
+ const [checkStarted,setCheckStart]=useState(false)
   const [category, setcategory] = useState("");
+  const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
+  const [teams, setTeams] = useState([])
   const [formData, setFormData] = useState({
 
-    item: "",
-    firstPrice: "",
-    firstUnit: "",
-    secPrice: "",
-    secUnit: "",
-    thirdPrice: "",
-    thirdUnit: "",
+    itemId: "",
+    firstPrize: "",
+    firstTeam: "",
+    secPrize: "",
+    secTeam: "",
+    thirdPrize: "",
+    thirdTeam: "",
   });
 
+  useEffect(() => {
+  
+    async function fetchData() {
+      try {
+        const isStarted = await canAddResult(); // should return something like { success: true/false }
+          setCheckStart(isStarted); // allow form
+        if(!isStarted)  navigate('/admin'); // redirect if already started
+        
+      } catch (error) {
+        console.error("Error checking program start status:", error);
+      }
+    }
+  
+    fetchData();
+  }, []);
+
+
+  useEffect(() => {
+
+
+    async function fetchData() {
+      const responce = await toast.promise(
+        getCategory(),
+        {
+          loading: 'Loading...',
+          success: 'Category Data successfully!',
+          error: 'Failed to fetch Team Data.',
+        }
+      )
+      console.log(responce.data);
+
+      setCategories(responce.data)
+    }
+    fetchData()
+  }, [])
+
+
+  useEffect(() => {
+
+
+    async function fetchData() {
+      const responce = await getTeam()
+
+
+      setTeams(responce.data)
+    }
+    fetchData()
+  }, [])
   const handleCategoryChange = (event) => {
-    const cate = event.target.value;
-    setcategory(cate);
-    setItems(itemsByCategory[cate]);
+    const selectedCategory = event.target.value;
+    setcategory(selectedCategory);
+
+
+
+    async function fetchData() {
+      const responce = await toast.promise(
+        getItem(selectedCategory),
+        {
+          loading: 'Loading...',
+          success: 'Category Data successfully!',
+          error: 'Failed to fetch Team Data.',
+        }
+      )
+
+      setItems(responce.data)
+    }
+    fetchData()
   };
 
   const handleformData = (event) => {
@@ -34,39 +102,51 @@ function AdminSide() {
 
   const handlesumbit = async (event) => {
     event.preventDefault()
-    toast.loading('Waiting...');
-    console.log("sumbit");
+
+
     const postData = {
+      categoryId: category,
       ...formData,
-      category,
     };
+
+    for (const [key, value] of Object.entries(postData)) {
+      if (value === undefined || value === "" || value === null) {
+        toast.error(`Please fill in the ${fieldNames[key] || key}`);
+        return;
+      }
+    }
+    toast.loading('Waiting...');
+
     const data = await postDataServer(postData);
     console.log(data, data);
     toast.dismiss()
     toast.success('Successfully Added!');
     setFormData({
-    
-      item: "",
-      firstPrice: "",
-      firstUnit: "",
-      secPrice: "",
-      secUnit: "",
-      thirdPrice: "",
-      thirdUnit: "",
+
+      itemId: "",
+      firstPrize: "",
+      firstTeam: "",
+      secPrize: "",
+      secTeam: "",
+      thirdPrize: "",
+      thirdTeam: "",
     })
   };
 
-  const divResult='flex flex-col gap-2 bg-[#ffe7b0] rounded px-5 py-6'
-  const textResult='text-2xl font-semibold text-black  rounded'
+  const divResult = 'flex flex-col gap-2 bg-[#ffe7b0] rounded px-5 py-6'
+  const textResult = 'text-2xl font-semibold text-black  rounded'
   return (
+    
     <div>
+      {checkStarted&&(
+        <>
       <form
         onSubmit={handlesumbit}
         className="flex flex-col min-h-screen space-y-12 p-10 md:py-24 lg:px-20 xl:px-56"
       >
-<div className="flex flex-col lg:flex-row justify-between items-center ">
-  <h2 className="text-3xl lg:text-4xl font-bold ">Upload Results Here</h2>
-  {/* <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto text-center">
+        <div className="flex flex-col lg:flex-row justify-between items-center ">
+          <h2 className="text-3xl lg:text-4xl font-bold ">Upload Results Here</h2>
+          {/* <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto text-center">
     <button 
       onClick={() => navigate('/admin/AddImage')}
       className="px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
@@ -80,9 +160,9 @@ function AdminSide() {
       Go Home
     </button>
   </div> */}
-</div>
+        </div>
 
-    
+
         <div className="flex flex-col space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-7 lg:gap-10">
             <div className="flex flex-col gap-2">
@@ -95,9 +175,9 @@ function AdminSide() {
                 className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
               >
                 <option value="">Select Category</option>
-                {categories.map((catecory) => (
-                  <option key={catecory} value={catecory}>
-                    {catecory}
+                {categories.length > 0 && categories.map((catecory) => (
+                  <option key={catecory?._id} value={catecory?._id}>
+                    {catecory?.categoryName}
                   </option>
                 ))}
               </select>
@@ -107,15 +187,15 @@ function AdminSide() {
                 Item
               </label>
               <select
-                id="item"
-                value={formData.item}
+                id="itemId"
+                value={formData.itemId}
                 onChange={handleformData}
                 className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
               >
                 <option value="">Select Item</option>
                 {items.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
+                  <option key={item._id} value={item?._id}>
+                    {item?.itemName}
                   </option>
                 ))}
               </select>
@@ -133,8 +213,8 @@ function AdminSide() {
                     Name
                   </label>
                   <input
-                    id="firstPrice"
-                    value={formData.firstPrice}
+                    id="firstPrize"
+                    value={formData.firstPrize}
                     onChange={handleformData}
                     className="w-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                     type="text"
@@ -145,15 +225,16 @@ function AdminSide() {
                     Team{" "}
                   </label>
                   <select
-                    id="firstUnit"
-                    value={formData.firstUnit}
+                    id="firstTeam"
+                    value={formData.firstTeam}
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {teams.map((sector) => (
-                      <option key={sector} value={sector}>
-                        {sector}
+                    {teams.map((item) => (
+                      <option key={item?.teamName} value={item?.teamName}>
+                        {item?.teamName
+                        }
                       </option>
                     ))}
                   </select>
@@ -171,8 +252,8 @@ function AdminSide() {
                     Name
                   </label>
                   <input
-                    id="secPrice"
-                    value={formData.secPrice}
+                    id="secPrize"
+                    value={formData.secPrize}
                     onChange={handleformData}
                     className="w-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                     type="text"
@@ -180,18 +261,20 @@ function AdminSide() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label for="secondSector" className="font-medium text-lg">
-                  Team
+                    Team
                   </label>
                   <select
-                    id="secUnit"
-                    value={formData.secUnit}
+                    id="secTeam"
+                    value={formData.secTeam}
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {teams.map((sector) => (
-                      <option key={sector} value={sector}>
-                        {sector}
+
+                    {teams.map((item) => (
+                      <option key={item?.teamName} value={item?.teamName}>
+                        {item?.teamName
+                        }
                       </option>
                     ))}
                   </select>
@@ -210,8 +293,8 @@ function AdminSide() {
                     Name
                   </label>
                   <input
-                    id="thirdPrice"
-                    value={formData.thirdPrice}
+                    id="thirdPrize"
+                    value={formData.thirdPrize}
                     onChange={handleformData}
                     className="w-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                     type="text"
@@ -219,18 +302,18 @@ function AdminSide() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label for="thirdSector" className="font-medium text-lg">
-                  Team
+                    Team
                   </label>
                   <select
-                    id="thirdUnit"
-                    value={formData.thirdUnit}
+                    id="thirdTeam"
+                    value={formData.thirdTeam}
                     onChange={handleformData}
                     className="w-full h-full p-2 border rounded bg-slate-50 hover:bg-slate-100"
                   >
                     <option value="">Select Team</option>
-                    {teams.map((sector) => (
-                      <option key={sector} value={sector}>
-                        {sector}
+                    {teams.map((item) => (
+                      <option key={item?.teamName} value={item?.teamName}>
+                        {item?.teamName}
                       </option>
                     ))}
                   </select>
@@ -249,7 +332,7 @@ function AdminSide() {
 
       <footer className="px-5 md:px-10 lg:px-10 xl:px-36 w-full gap-5 sm:max-w-full bg-[#151622] flex flex-col items-center justify-center">
         <h1 className="text-white mt-8 font-semibold text-sm lg:text-base">
-         Al Fathah Rabeeh Fest Program committe
+          Al Fathah Rabeeh Fest Program committe
         </h1>
         {/* <div className="flex items-center justify-center text-white gap-1">
           <a
@@ -294,8 +377,10 @@ function AdminSide() {
         </h1>
       </footer>
       <Toaster />
-    </div>
+    </>
+    )}
+      </div>
   );
 }
 
-export default AdminSide;
+export default AddResults;
