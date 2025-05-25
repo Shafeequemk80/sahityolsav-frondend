@@ -10,23 +10,28 @@ const ScoreAd = () => {
   const [errors, setErrors] = useState({});
   const [teams, setTeams] = useState([]);
   useEffect(() => {
-    console.log('koya');
+  async function fetchData() {
+    const toastId = toast.loading('Loading...');
+    try {
+      const response = await getTeamPoint();
+      toast.dismiss(toastId);
 
-    async function fetchData() {
-      const responce = await toast.promise(
-        getTeamPoint(),
-        {
-          loading: 'Loading...',
-          success: 'Team Data successfully!',
-          error: (err) => err.response?.data?.message || err.message || 'Something went wrong',
-        }
-      )
-      console.log(responce.data);
-
-      setTeams(responce.data)
+      if (response?.success) {
+        toast.success('Team data loaded successfully!');
+        setTeams(response.data);
+      } else {
+        toast.error(response.message || 'Failed to load team data');
+      }
+    } catch (error) {
+      toast.dismiss(toastId);
+      console.log(error.message);
+      toast.error('Something went wrong');
     }
-    fetchData()
-  }, [])
+  }
+
+  fetchData();
+}, []);
+
 
   const handlePointChange = (e, index) => {
     const points = parseInt(e.target.value, 10) || 0;
@@ -91,7 +96,7 @@ const ScoreAd = () => {
           <h1 className="mb-6 text-black font-poppins font-semibold text-center text-3xl">
             Results
           </h1>
-          <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-6 font-poppins">
+          <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1  sm:grid-cols-2 gap-6 font-poppins">
             {teams.map((item, index) => (
               <React.Fragment key={item?.team?.teamName}>
                 <label className="w-full cursor-pointer border p-3">

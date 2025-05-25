@@ -2,12 +2,15 @@ import React from 'react'
 import { resetProgram, startProgram,stopProgram } from '../api/apiCall';
 import Swal from "sweetalert2";
 import { steps } from '../data';
+import toast, { Toaster } from 'react-hot-toast';
 
 function StartProgram() {
     
 
       async function handleStartButtton() {
+        toast.loading('Starting...')
         const isStart = await startProgram();
+        toast.dismiss()
         if (isStart.success) {
           Swal.fire({
             icon: "success",
@@ -33,7 +36,9 @@ async function handleStopButtton() {
   });
 
   if (confirmResult.isConfirmed) {
+     toast.loading('Stoping...')
     const isStart = await stopProgram();
+    toast.dismiss()
     if (isStart.success) {
       Swal.fire({
         icon: "success",
@@ -60,7 +65,9 @@ async function handleRestButtton() {
   });
 
   if (confirmResult.isConfirmed) {
+     toast.loading('Resetting...')
     const isStart = await resetProgram();
+    toast.dismiss()
     if (isStart.success) {
       Swal.fire({
         icon: "success",
@@ -79,6 +86,7 @@ async function handleRestButtton() {
 
     
       return (
+        <>
        <div>
          <div className="md:max-w-xl md:mx-auto mx-5 p-6 bg-blue-100 rounded mt-5 shadow-md">
           <h2 className="text-2xl font-bold mb-4 text-center">How to Start Using Our Website</h2>
@@ -111,6 +119,8 @@ async function handleRestButtton() {
 
 
        </div>
+       <Toaster/>
+       </>
       );
     };
 
