@@ -1,12 +1,12 @@
 import Swal from "sweetalert2";
-import { checkProgram, startProgram } from "../api/apiCall";
-import { SiTruenas } from "react-icons/si";
+import { checkforResult, checkStartProgram } from "../api/apiCall";
+
 
 
 export const checkProgramStarted = async () => {
   try {
     
-    const response = await startProgram();
+    const response = await checkStartProgram();
  
 console.log(response);
 
@@ -33,7 +33,7 @@ console.log(response);
 export const canAddResult = async () => {
     try {
       
-      const response = await checkProgram();
+      const response = await checkforResult();
 
   
       if (!response?.success) {

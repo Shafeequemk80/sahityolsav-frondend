@@ -12,10 +12,31 @@ async function startProgram() {
   
   return response.data;
 }
-
-async function checkProgram() {
+async function checkStartProgram() {
   const response = await axios.get(
     `${baseUrl}/checkstatprogram`
+  );
+  
+  return response.data;
+}
+async function resetProgram() {
+  const response = await axios.get(
+    `${baseUrl}/resetprogram`
+  );
+  
+  return response.data;
+}
+
+async function checkforResult() {
+  const response = await axios.get(
+    `${baseUrl}/checkstatprogram`
+  );
+  
+  return response.data;
+}
+async function stopProgram() {
+  const response = await axios.get(
+    `${baseUrl}/stopprogram`
   );
   
   return response.data;
@@ -125,7 +146,7 @@ async function getTeam() {
 }
 
 async function deleteTeam(teamId) {
-  const response = await axios.get(`${baseUrl}/deleteteam/${teamId}`);
+  const response = await axios.delete(`${baseUrl}/deleteteam/${teamId}`);
   return response.data;
 }
 async function editTeam(teamId, teamName) {
@@ -135,7 +156,10 @@ async function editTeam(teamId, teamName) {
 export {
   baseUrl,
   startProgram,
-  checkProgram,
+  checkforResult,
+  checkStartProgram,
+  resetProgram,
+  stopProgram,
   postDataServer,
   getDataServer,
   ImageUploadServer,

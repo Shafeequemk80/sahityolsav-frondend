@@ -33,11 +33,11 @@ function AllResult() {
     // Filter results based on the search query
     const filteredResults = results.filter(
         (element) =>
-            element.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.item.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.result[0]?.firstPrice.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.result[1]?.secPrice.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            element.result[2]?.thirdPrice.toLowerCase().includes(searchQuery.toLowerCase())
+            element.category?.categoryName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            element.item?.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            element.result[0]?.firstPrize.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            element.result[1]?.secPrize.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            element.result[2]?.thirdPrize.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
@@ -67,16 +67,16 @@ function AllResult() {
                             filteredResults.map((element, index) => (
                                 <tr key={index + 300} className={`${index % 2 === 1 ? "bg-gray-100" : ""}`}>
                                     <td className="py-2 px-4 border-b">{index + 1}</td>
-                                    <td className="py-2 px-4 border-b">{element.category}</td>
-                                    <td className="py-2 px-4 border-b">{element.item}</td>
+                                    <td className="py-2 px-4 border-b">{element?.category?.categoryName}</td>
+                                    <td className="py-2 px-4 border-b">{element?.item?.itemName}</td>
                                     <td className="py-2 px-4 border-b">
-                                        {element.result[0]?.firstPrice || <p className="text-red-500">No Data</p>}
+                                        {element.result[0]?.firstPrize || <p className="text-red-500">No Data</p>}
                                     </td>
                                     <td className="py-2 px-4 border-b">
-                                        {element.result[1]?.secPrice || <p className="text-red-500">No Data</p>}
+                                        {element.result[1]?.secPrize || <p className="text-red-500">No Data</p>}
                                     </td>
                                     <td className="py-2 px-4 border-b">
-                                        {element.result[2]?.thirdPrice || <p className="text-red-500">No Data</p>}
+                                        {element.result[2]?.thirdPrize || <p className="text-red-500">No Data</p>}
                                     </td>
                                 </tr>
                             ))

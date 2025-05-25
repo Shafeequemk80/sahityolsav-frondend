@@ -91,7 +91,7 @@ const ScoreAd = () => {
           <h1 className="mb-6 text-black font-poppins font-semibold text-center text-3xl">
             Results
           </h1>
-          <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6 font-poppins">
+          <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-6 font-poppins">
             {teams.map((item, index) => (
               <React.Fragment key={item?.team?.teamName}>
                 <label className="w-full cursor-pointer border p-3">
