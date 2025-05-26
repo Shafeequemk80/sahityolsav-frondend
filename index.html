@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
+    <link id="icon"
       rel="icon"
       type="image/svg+xml"
-      href="/fevicon.png"
+      href="https://res.cloudinary.com/do0mvctrk/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1748280409/Untitled-2_mn64to.jpg"
       style="width: 20px; height: auto"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,11 +31,23 @@
       rel="stylesheet"
     />
     
-    <title>Jubilo</title>
+    <title id="title">Fest</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
   </body>
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.getElementById('icon').src = 'https://res.cloudinary.com/do0mvctrk/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1748280409/Untitled-2_mn64to.jpg';
+  axios.get('http://localhost:3000/gettitle')
+  .then(function(responce){
+    console.log(responce.data);
+    
+    document.getElementById('title').textContent=responce?.data?.data
+  }).catch(function (error){
+          console.error('Error fetching data:', error.message);
+  })
+</script>
 </html>

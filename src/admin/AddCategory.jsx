@@ -267,6 +267,7 @@ const AddCategory = () => {
                 </div>
 
             </div>
+           
             <Toaster />
         </>
     );

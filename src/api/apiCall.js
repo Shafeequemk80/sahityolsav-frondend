@@ -122,8 +122,18 @@ async function addDescription(description) {
   });
   return response.data;
 }
-async function getDescription(description) {
+async function addTitle(title) {
+  const response = await axios.put(`${baseUrl}/addtitle`, {
+    title,
+  });
+  return response.data;
+}
+async function getDescription() {
   const response = await axios.get(`${baseUrl}/getdescription`);
+  return response.data;
+}
+async function getTitle() {
+  const response = await axios.get(`${baseUrl}/gettitle`);
   return response.data;
 }
 
@@ -167,7 +177,9 @@ export {
   getTeamPoint,
   scoreData,
   addDescription,
+  addTitle,
   getDescription,
+  getTitle,
   getBrochure,
   addBrochure,
   addTeamName,

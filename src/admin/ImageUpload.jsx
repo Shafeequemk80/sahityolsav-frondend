@@ -177,8 +177,10 @@ const ImageUpload = () => {
             </button>
           </div>
         </form>
-        <Toaster />
+       
       </div>)}
+  
+        <Toaster />
     </>
   );
 };

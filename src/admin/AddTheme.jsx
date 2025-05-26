@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { addDescription, getDescription } from '../api/apiCall'
 import toast, { Toaster } from 'react-hot-toast'
+import AddTitle from './AddTitle'
+
 
 function AddTheme() {
   const [description, setDescription] = useState('')
@@ -10,7 +12,9 @@ function AddTheme() {
     async function fetchData() {
       try {
         const response = await getDescription()
-        setDescription(response.data)
+        console.log(response.data);
+        
+        setDescription(response?.data?.title)
       } catch (error) {
         console.error(error.message)
       }
@@ -37,7 +41,13 @@ function AddTheme() {
 
   return (
     <>
-      <div className="w-screen mt-10 px-5 flex flex-col justify-center items-center">
+      <div className="w-screen mt-10 px-5 flex flex-col h-full  items-center">
+        <div>
+          <h1 className='text-black text-2xl font-bold mb-5'>Add Title</h1>
+          <div>
+           <AddTitle/>
+          </div>
+        </div>
         <h1 className="text-black text-2xl font-bold mb-5">Add Theme</h1>
 
         <div className="relative w-full max-w-4xl  mb-5">
@@ -53,7 +63,7 @@ function AddTheme() {
           ></textarea>
 
           <div className="flex justify-between items-center mt-2 text-sm text-gray-500">
-            <span>{description.length}/{maxLength}</span>
+            <span>{description?.length}/{maxLength}</span>
             <button
               onClick={handleSaveDescription}
               className="bg-blue-700 px-10 py-1 text-xl text-white rounded hover:bg-blue-800 transition"
@@ -64,16 +74,16 @@ function AddTheme() {
         </div>
 
         {/* Optional: Preview */}
-        {description && (
+        {/* {description && (
           <div className="w-full max-w-4xl px-5 py-3  bg-gray-50 border rounded-lg shadow-sm break-words whitespace-pre-wrap">
             <p className="text-base md:text-lg lg:text-xl font-light text-justify text-gray-800 whitespace-pre-line">
               {description}
             </p>
           </div>
-        )}
+        )} */}
       </div>
-
       <Toaster />
+
     </>
   )
 }

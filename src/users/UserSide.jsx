@@ -104,7 +104,7 @@ function UserSide() {
 
     fetchData();
   }, []);
-  
+
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
@@ -119,7 +119,7 @@ function UserSide() {
       )
 
       setItems(responce.data || [])
-      
+
     }
     fetchData()
 
@@ -133,20 +133,20 @@ function UserSide() {
       toast.loading("Waiting...");
       const response = await getDataServer(itemValue, category);
 
-      const{success,message, data}=response      
+      const { success, message, data } = response
       console.log(data);
-      
-     
-setTostData({
-  category:data?.category?.categoryName,
-  item:data?.item?.itemName,
-})
-toast.dismiss();
-setResults(data);
-if (success) {
-  toast.success(`Yes, ${data?.category?.categoryName} ${data?.item?.itemName} result published`);
-} else {
-       
+
+
+      setTostData({
+        category: data?.category?.categoryName,
+        item: data?.item?.itemName,
+      })
+      toast.dismiss();
+      setResults(data);
+      if (success) {
+        toast.success(`Yes, ${data?.category?.categoryName} ${data?.item?.itemName} result published`);
+      } else {
+
         toast(`NO,  ${data?.category?.categoryName} ${data?.item?.itemName}result published Yet`);
       }
     } catch (error) {
@@ -210,72 +210,72 @@ if (success) {
           </div>
         </div>
 
-        {results?.result&& ( 
+        {results?.result && (
           <>
-          <div className="flex flex-col ml-16 md:flex-row justify-between  lg:px-52 ">
-            <div className={nameRow}>
-              <div className={position}>01</div>
-              <div className="text-start">
-                <p className={resultName}>{results.result[0].firstPrize}</p>
-                <p className={resultItem}>{results.result[0].firstTeam}</p>
+            <div className="flex flex-col ml-16 md:flex-row justify-between  lg:px-52 ">
+              <div className={nameRow}>
+                <div className={position}>01</div>
+                <div className="text-start">
+                  <p className={resultName}>{results.result[0].firstPrize}</p>
+                  <p className={resultItem}>{results.result[0].firstTeam}</p>
+                </div>
+              </div>
+              <div className={nameRow}>
+                <div className={position}>02</div>
+                <div className="text-start">
+                  <p className={resultName}>{results.result[1].secPrize}</p>
+                  <p className={resultItem}>{results.result[1].secTeam}</p>
+                </div>
+              </div>
+              <div className={nameRow}>
+                <div className={position}>03</div>
+                <div className="text-start">
+                  <p className={resultName}>{results.result[2].thirdPrize}</p>
+                  <p className={resultItem}>{results.result[2].thirdTeam
+                  }</p>
+                </div>
               </div>
             </div>
-            <div className={nameRow}>
-              <div className={position}>02</div>
-              <div className="text-start">
-                <p className={resultName}>{results.result[1].secPrize}</p>
-                <p className={resultItem}>{results.result[1].secTeam}</p>
-              </div>
+
+            <div
+
+              className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${results ? "bg-slate-100" : ""
+                } lg:px-28 `}
+            >
+              <ImageDownlad
+                results={results}
+                category={results?.category?.categoryName}
+                item={results?.item?.itemName}
+                image={images[0]}
+                color={`text-${color[0]}`}
+              />
+              <ImageDownlad
+                results={results}
+                category={results?.category?.categoryName}
+                item={results?.item?.itemName}
+                image={images[1]}
+                color={`text-${color[1]}`}
+              />
+              <ImageDownlad
+                results={results}
+                category={results?.category?.categoryName}
+                item={results?.item?.itemName}
+                image={images[2]}
+                color={`text-${color[2]}`}
+              />
+
             </div>
-            <div className={nameRow}>
-              <div className={position}>03</div>
-              <div className="text-start">
-                <p className={resultName}>{results.result[2].thirdPrize}</p>
-                <p className={resultItem}>{results.result[2].thirdTeam
-                }</p>
-              </div>
-            </div>
-          </div>
-
-        <div
-
-          className={`grid grid-cols-1 px-4 py-6 sm:px-8 sm:py-8 overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar  lg:px-20 lg:py-12 lg:grid-cols-2 xl:grid-cols-3 ${results ? "bg-slate-100" : ""
-            } lg:px-28 `}
-        >
-          <ImageDownlad
-            results={results}
-            category={results?.category?.categoryName}
-            item={results?.item?.itemName}
-            image={images[0]}
-            color={`text-${color[0]}`}
-          />
-          <ImageDownlad
-            results={results}
-            category={results?.category?.categoryName}
-            item={results?.item?.itemName}
-            image={images[1]}
-            color={`text-${color[1]}`}
-          />
-          <ImageDownlad
-            results={results}
-            category={results?.category?.categoryName}
-            item={results?.item?.itemName}
-            image={images[2]}
-            color={`text-${color[2]}`}
-          />
-
-        </div>
-        </>
-)}
+          </>
+        )}
 
       </div>
 
       <div className="flex justify-center">
-        {results?.result ==false&& (
+        {results?.result == false && (
           <div className="bg-yellow-100 border-l-4 mx-10 text-center border-yellow-500 text-yellow-700 p-4 mt-4 rounded-md">
             <h2 className="font-bold text-lg">Notice:</h2>
             <p className="mt-2">
-             { `The results for the ${toastData.category} ${toastData.item} Competition have not
+              {`The results for the ${toastData.category} ${toastData.item} Competition have not
               yet been published. Please check back later for updates`}
             </p>
           </div>

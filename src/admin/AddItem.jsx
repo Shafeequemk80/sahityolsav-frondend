@@ -3,8 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2'
 import { FaEdit } from "react-icons/fa";
-import { addCategory, addItem, deleteCategory, deleteItem, editCategory, editItem, getCategory, getItem } from '../api/cateGoryAnditem';
-import { CgEditHighlight } from 'react-icons/cg';
+import { addItem, deleteItem, editItem, getCategory, getItem } from '../api/cateGoryAnditem';
 import { checkProgramStarted } from '../utils/checkProgramStarted';
 
 
