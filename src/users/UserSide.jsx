@@ -46,15 +46,7 @@ function UserSide() {
 
 
     async function fetchData() {
-      const responce = await toast.promise(
-        getCategory(),
-        {
-          loading: 'Loading...',
-          success: 'Category Data successfully!',
-          error: 'Failed to fetch Team Data.',
-        }
-      )
-      console.log(responce.data);
+      const responce = await getCategory()
 
       setCategories(responce.data)
     }
@@ -109,14 +101,9 @@ function UserSide() {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
     async function fetchData() {
-      const responce = await toast.promise(
-        getItem(selectedCategory),
-        {
-          loading: 'Loading...',
-          success: 'Category Data successfully!',
-          error: 'Failed to fetch Team Data.',
-        }
-      )
+      const responce = await getItem(selectedCategory)
+
+
 
       setItems(responce.data || [])
 
