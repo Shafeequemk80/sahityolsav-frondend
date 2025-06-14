@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <div
-      className="relative text-center w-full h-screen bg-[#161616] flex flex-col items-center justify-center pt-10"
+      className="relative text-center w-full h-screen flex flex-col items-center justify-center pt-10"
     >
       {/* Background for Desktop and Mobile */}
       <div
@@ -31,11 +31,11 @@ function Home() {
       ></div>
 
       {/* Foreground text or logo */}
-      <img
+      {/* <img
         className="absolute w-52 -mt-32 md:w-[600px]"
         src="/sahiText.png"
         alt="Sahithyolsav"
-      />
+      /> */}
 
       {/* Scroll-down button */}
       <div className="pt-14 lg:pt-20 z-10">
