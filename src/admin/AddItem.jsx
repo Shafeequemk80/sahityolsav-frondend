@@ -128,7 +128,7 @@ const AddItem = () => {
     }
 
     const handleEditItem = async (id, currentName, index) => {
-          if(await checkProgramStarted())return
+  
         const { value: newName } = await Swal.fire({
             title: "Edit Item Name",
             input: "text",
