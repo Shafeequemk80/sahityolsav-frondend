@@ -142,7 +142,7 @@ const AddCategory = () => {
 
     const handleEditTeam = async (id, currentName, index) => {
 
-        if(await checkProgramStarted())return
+       
         const { value: newName } = await Swal.fire({
             title: "Edit Category Name",
             input: "text",

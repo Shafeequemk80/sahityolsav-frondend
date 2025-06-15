@@ -110,7 +110,7 @@ const AddTeam = () => {
     }
 
     const handleEditTeam = async (id, currentName, index) => {
-          if(await checkProgramStarted())return
+            
         const { value: newName } = await Swal.fire({
             title: "Edit Team Name",
             input: "text",
