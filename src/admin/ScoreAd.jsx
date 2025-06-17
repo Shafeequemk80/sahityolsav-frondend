@@ -101,7 +101,7 @@ const ScoreAd = () => {
           <h1 className="mb-6 text-black font-poppins font-semibold text-center text-3xl">
             Results
           </h1>
-    <div>
+    <div className='mb-7'>
              <label className="w-full block bg-yellow-100 cursor-pointer text-xl border p-3">
                  Enter After Count
                   <input
@@ -111,7 +111,7 @@ const ScoreAd = () => {
                     value={afterCount}
                     onChange={(e) => setAfterCount(e.target.value)}
                   />
-                  {/* {errors && <span className="text-red-500 text-sm">{errors}</span>} */}
+                   <span className="text-red-500 text-sm">If you are entering the final result, please set the after count to 10001.</span>
                 </label>
           </div>
           <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1  sm:grid-cols-2 gap-6 font-poppins">
