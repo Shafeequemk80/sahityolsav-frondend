@@ -110,12 +110,12 @@ function AddResults() {
       ...formData,
     };
 
-    for (const [key, value] of Object.entries(postData)) {
-      if (value === undefined || value === "" || value === null) {
-        toast.error(`Please fill in the ${fieldNames[key] || key}`);
-        return;
-      }
-    }
+    // for (const [key, value] of Object.entries(postData)) {
+    //   if (value === undefined || value === "" || value === null) {
+    //     toast.error(`Please fill in the ${fieldNames[key] || key}`);
+    //     return;
+    //   }
+    // }
     toast.loading('Waiting...');
 
     const data = await postDataServer(postData);

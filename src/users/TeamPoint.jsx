@@ -4,6 +4,7 @@ import { getTeamPoint } from "../api/apiCall";
 
 function TeamPoint() {
   const [points, setTeampoint] = useState([]);
+  const [afterCount, setAfterCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,8 +12,9 @@ function TeamPoint() {
       try {
         const response = await getTeamPoint();
         // Check if response.data[0] is an array before setting state
-        if (Array.isArray(response.data)) {
-          setTeampoint(response.data);
+        if (Array.isArray(response.data.sortedResults)) {
+          setTeampoint(response.data.sortedResults);
+          setAfterCount(response.data.afterCount);
           // toast.success("Team Points fetched successfully", { id: toastId });
         } else {
           // toast.error("No data found", { id: toastId });
@@ -30,7 +32,7 @@ function TeamPoint() {
     <>
       <div className="p-6 bg-[#FADFA1] mt-10 flex justify-center">
         <div className=" w-full lg:w-2/3">
-          <h1 className="text-4xl text-center font-bold mb-6 text-black">Final Result</h1>
+          <h1 className="text-4xl text-center font-bold mb-6 text-black">{` ${afterCount==10001?"Final Result":`After ${afterCount}`}`}</h1>
           <div className="overflow-x-auto">
             <table className="w-full bg-white shadow-lg rounded-lg">
               <thead>

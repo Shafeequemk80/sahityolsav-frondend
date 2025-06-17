@@ -9,6 +9,7 @@ const ScoreAd = () => {
   const [formState, setFormState] = useState({});
   const [errors, setErrors] = useState({});
   const [teams, setTeams] = useState([]);
+  const [afterCount, setAfterCount] = useState(100);
   useEffect(() => {
   async function fetchData() {
     const toastId = toast.loading('Loading...');
@@ -18,7 +19,10 @@ const ScoreAd = () => {
 
       if (response?.success) {
         toast.success('Team data loaded successfully!');
-        setTeams(response.data);
+        setTeams(response?.data?.sortedResults)
+        console.log(response?.data?.afterCount);
+        
+        setAfterCount(response?.data?.afterCount);
       } else {
         toast.error(response.message || 'Failed to load team data');
       }
@@ -78,7 +82,7 @@ const ScoreAd = () => {
     toast.loading('Adding scores...');
     console.log('Submitted Form Data:', formState);
 
-    const response = await scoreData(teams);
+    const response = await scoreData(teams,afterCount);
     toast.dismiss();
 
     if (response.message === true) {
@@ -91,11 +95,25 @@ const ScoreAd = () => {
 
   return (
     <>
+          
       {teams.length > 0 ? (
         <div className="border-x-2 border-b-2 border-theme_black w-full pb-10 pt-6 px-4 lg:px-16">
           <h1 className="mb-6 text-black font-poppins font-semibold text-center text-3xl">
             Results
           </h1>
+    <div>
+             <label className="w-full block bg-yellow-100 cursor-pointer text-xl border p-3">
+                 Enter After Count
+                  <input
+                    type="number" 
+                    className={`w-full mt-2 border p-3 placeholder:text-black`}
+                    placeholder="Enter after result count"
+                    value={afterCount}
+                    onChange={(e) => setAfterCount(e.target.value)}
+                  />
+                  {/* {errors && <span className="text-red-500 text-sm">{errors}</span>} */}
+                </label>
+          </div>
           <form onSubmit={handleSubmit} className="mb-16 grid grid-cols-1  sm:grid-cols-2 gap-6 font-poppins">
             {teams.map((item, index) => (
               <React.Fragment key={item?.team?.teamName}>

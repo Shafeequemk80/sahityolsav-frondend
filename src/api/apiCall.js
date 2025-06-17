@@ -93,9 +93,9 @@ async function getTeamPoint() {
   return response.data;
 }
 
-async function scoreData(formData) {
+async function scoreData(formData,afterCount) {
   try {
-    const response = await axios.post(`${baseUrl}/saveteampoint`, formData);
+    const response = await axios.post(`${baseUrl}/saveteampoint`, {formData,afterCount});
 
     return response.data;
   } catch (error) {
