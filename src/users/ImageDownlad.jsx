@@ -63,7 +63,7 @@ function ImageDownload({ results,category,item, color, image }) {
                 </div>
               </div>
 
-              <div className="text-start mt-3 pl-2">
+              <div className="text-start mt-2 pl-2">
                 {results?.result.map((result, index) => (
                   <div key={index}>
                     <div className={`text-[11px] poppins-semibold ${color}`}>
@@ -78,7 +78,7 @@ function ImageDownload({ results,category,item, color, image }) {
                         : ""}
                     </div>
 
-                    <div className={`text-[8px] mb-2 -mt-1 poppins-light ${color}`}>
+                    <div className={`text-[8px] mb-[10px] -mt-[2px] poppins-light ${color}`}>
                       {result?.firstTeam || result?.secTeam || result?.thirdTeam
                       }
                     </div>
