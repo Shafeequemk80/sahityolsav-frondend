@@ -20,8 +20,10 @@ function AdminDashboard() {
   
 
   const handleLogout = () => {
-    localStorage.removeItem("isAdminLoggedIn");
-    navigate("/admin/login");
+   const log= localStorage.removeItem("isAdminLoggedIn");
+   if(!log){
+     navigate("/admin/login");
+   }
   };
 
   return (

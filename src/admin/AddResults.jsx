@@ -30,7 +30,7 @@ function AddResults() {
       try {
         const isStarted = await canAddResult(); // should return something like { success: true/false }
         setCheckStart(isStarted); // allow form
-        if (!isStarted) navigate('/admin'); // redirect if already started
+        if (!isStarted)return  navigate('/admin'); // redirect if already started
 
       } catch (error) {
         console.error("Error checking program start status:", error);
