@@ -14,15 +14,16 @@ function Home() {
 
   return (
     <div
-      className="relative text-center w-full h-screen flex flex-col items-center justify-center pt-10"
+      className="relative text-center w-full h-screen p-0 flex flex-col items-center justify-center pt-10"
     >
       {/* Background for Desktop and Mobile */}
-      <div
-        className="absolute inset-1 w-full object-cover bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/bgmobile.jpg')", // Default background for mobile
-        }}
-      ></div>
+     <div
+  className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('/bgmobile.jpg')",
+  }}
+></div>
+
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat hidden md:block"
         style={{
