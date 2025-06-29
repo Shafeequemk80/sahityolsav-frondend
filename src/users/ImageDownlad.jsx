@@ -53,17 +53,17 @@ function ImageDownload({ results,category,item, color, image }) {
               src={image}
               alt="Background"
             />
-            <div className="absolute top-40 left-12  right-0 bottom-0 flex flex-col ">
+            <div className="absolute top-[140px] left-[45px]  right-0 bottom-0 flex flex-col ">
               <div className="text-start ">
-                <div className={`text-xs poppins-light ${color}`}>
+                <div className={`text-[10px] poppins-light ${color}`}>
                   {category}
                 </div>
-                <div className={`text-sm poppins-medium -mt-1  ${color}`}>
+                <div className={`text-[13px] poppins-medium -mt-[6px]  ${color}`}>
                   {item}
                 </div>
               </div>
 
-              <div className="text-start mt-2 pl-2">
+              <div className="text-start mt-[12px] pl-[10px]">
                 {results?.result.map((result, index) => (
                   <div key={index}>
                     <div className={`text-[11px] poppins-semibold ${color}`}>
@@ -78,7 +78,7 @@ function ImageDownload({ results,category,item, color, image }) {
                         : ""}
                     </div>
 
-                    <div className={`text-[8px] mb-[10px] -mt-[2px] poppins-light ${color}`}>
+                    <div className={`text-[8px] mb-[7px] -mt-[2px] poppins-light ${color}`}>
                       {result?.firstTeam || result?.secTeam || result?.thirdTeam
                       }
                     </div>
