@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { BarLoader } from "react-spinners";
 
 const ImageUpload = () => {
-  let dummy="https://dummyimage.com/350x350/000/fff.png&text=Please+Click+me"
+  let dummy="/350x350.png"
   const [images, setImages] = useState([null, null, null]);
   const [uploadedFiles, setUploadedFiles] = useState([null, null, null]);
   const [loading, setLoading] = useState(false);
