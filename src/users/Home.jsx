@@ -32,14 +32,14 @@ function Home() {
       ></div>
 
       {/* Foreground text or logo */}
-      {/* <img
-        className="absolute w-52 -mt-32 md:w-[600px]"
+      <img
+        className="absolute w-[300px] -mt-[300px] md:w-[600px]"
         src="/sahiText.png"
         alt="Sahithyolsav"
-      /> */}
+      />
 
       {/* Scroll-down button */}
-      <div className="pt-14 lg:pt-20 z-10">
+      <div className="-mt-[100px] lg:mt-20 z-10">
         <button onClick={() => scrollToElement('results')}>
           <span
             className="iconify text-3xl lg:text-4xl rounded-full p-1 animate-bounce transition-all duration-500 bg-white"

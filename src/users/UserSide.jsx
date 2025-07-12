@@ -10,6 +10,9 @@ import Home from "./Home.jsx";
 import Carousel from "./Carousel.jsx";
 import TeamPoint from "./TeamPoint.jsx";
 import { getCategory, getItem } from "../api/cateGoryAnditem.js";
+import Gallery from "./Gallery.jsx";
+import { useNavigate } from "react-router-dom";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 
 
@@ -23,6 +26,7 @@ function UserSide() {
   const [images, setImages] = useState([null, null, null]);
   const [color, setColor] = useState([null, null, null]);
   const [buttonShow, setButtonShow] = useState(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -155,7 +159,7 @@ function UserSide() {
   const resultItem = "poppins-medium text-gray-600 -mt-1";
   return (
     <>
-      <Home />
+      <Home/>
 
       <div id="results" className="w-full text-center ">
         <h2 className="py-5 md:py-10 text-4xl lg:text-5xl  font-bold">
@@ -269,6 +273,15 @@ function UserSide() {
         )}
       </div>
       <TeamPoint />
+      <Gallery/>
+      <div className="flex justify-center">
+      <p
+      onClick={() => navigate('/gallerypage')}
+      className="text-blue-500 flex items-center gap-2 cursor-pointer hover:underline"
+    >
+      See more Images <FaLongArrowAltRight />
+    </p>
+      </div>
       <Footer />
       {buttonShow && (
         <button

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaImage, FaClipboardList, FaUsers, FaListAlt, FaSignOutAlt, FaHome, FaImages, FaLayerGroup, FaEnvelopeOpenText } from "react-icons/fa";
 import { MdOutlinePowerSettingsNew } from "react-icons/md";
+import { GrGallery } from "react-icons/gr";
 
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -9,12 +10,13 @@ function AdminDashboard() {
     { title: "Add Image", icon: <FaImage />, color: "bg-blue-500", path: "/admin/addImage" },
     { title: "Add Result", icon: <FaClipboardList />, color: "bg-emerald-500", path: "/admin/addresult" },
     { title: "Add Team", icon: <FaLayerGroup />, color: "bg-indigo-500", path: "/admin/addteam" },
-    { title: "Add Theme", icon: <FaEnvelopeOpenText />, color: "bg-pink-500", path: "/admin/addtheme" },
-    { title: "All Results", icon: <FaListAlt />, color: "bg-violet-500", path: "/admin/allresult" },
-    { title: "Add Brochure", icon: <FaImages />, color: "bg-rose-500", path: "/admin/addbrochure" },
-    { title: "Add Team Point", icon: <FaUsers />, color: "bg-amber-500", path: "/admin/addteampoint" },
     { title: "Add Category", icon: <FaClipboardList />, color: "bg-cyan-500", path: "/admin/addcategory" },
     { title: "Add Item", icon: <FaClipboardList />, color: "bg-teal-500", path: "/admin/additem" },
+    { title: "Add Gallery", icon: <GrGallery />, color: "bg-purple-500", path: "/admin/addgallery" },
+    { title: "All Results", icon: <FaListAlt />, color: "bg-violet-500", path: "/admin/allresult" },
+    { title: "Add Team Point", icon: <FaUsers />, color: "bg-amber-500", path: "/admin/addteampoint" },
+    { title: "Add Brochure", icon: <FaImages />, color: "bg-rose-500", path: "/admin/addbrochure" },
+    { title: "Add Theme", icon: <FaEnvelopeOpenText />, color: "bg-pink-500", path: "/admin/addtheme" },
   ];
   
   

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-'/bcslide.jpg'
+'https://img.freepik.com/free-vector/sun-light-with-clouds-sky-background_1017-38299.jpg?t=st=1739713605~exp=1739717205~hmac=bea221f2a840a79942b147937d2b2c9a41e377dc1e5de836bd1d89eb4cc5b1d7',
+'https://static.vecteezy.com/system/resources/thumbnails/010/360/100/small_2x/shining-blue-sky-and-orange-sand-background-free-vector.jpg'
   ];
 
   const scrollToElement = (elementId) => {

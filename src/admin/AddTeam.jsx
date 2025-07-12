@@ -161,9 +161,9 @@ const AddTeam = () => {
         <>
 
             <div className="border-x-2 border-b-2 border-theme_black w-full flex justify-center  items-center flex-col  md:pb-10 pt-6 px-4 lg:px-16">
-                <h1 className="mb-6 text-black font-poppins font-semibold  text-center text-3xl">
-                    Add Team
-                </h1>
+                    <h1 className="mb-6 text-black font-poppins font-semibold  text-center text-3xl">
+                        Add Team
+                    </h1>
                 <form onSubmit={handleSubmit} className="mb-16 flex justify-center items-center   flex-col  md:w-[50%] gap-6 font-poppins">
 
                     <React.Fragment >

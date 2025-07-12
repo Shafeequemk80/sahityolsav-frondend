@@ -1,6 +1,5 @@
 import { data } from "autoprefixer";
 import axios from "axios";
-
 const baseUrl = import.meta.env.VITE_BASE_URL;
 console.log(baseUrl);
 //const baseUrl = "https://sahityolsav-backred.onrender.com";
@@ -132,10 +131,6 @@ async function getDescription() {
   const response = await axios.get(`${baseUrl}/getdescription`);
   return response.data;
 }
-async function getTitle() {
-  const response = await axios.get(`${baseUrl}/gettitle`);
-  return response.data;
-}
 
 async function getBrochure() {
   const response = await axios.get(`${baseUrl}/getbrochuse`);
@@ -163,6 +158,24 @@ async function editTeam(teamId, teamName) {
   const response = await axios.put(`${baseUrl}/editteam`, { teamId, teamName });
   return response.data;
 }
+async function addToGallery(formData) {
+  const response =await axios.post(`${baseUrl}/upload-gallery`,formData);
+  return response.data;
+}
+async function getGallery() {
+  const response = await axios.get(`${baseUrl}/get-gallery`);
+  return response.data;
+}
+async function get3fromGallery() {
+  const response = await axios.get(`${baseUrl}/get3-gallery`);
+  return response.data;
+}
+
+ async function deleteGalleryImage(id) {
+  const response = await axios.delete(`${baseUrl}/delete-gallery/${id}`);
+  return response.data;
+}
+
 export {
   baseUrl,
   startProgram,
@@ -179,11 +192,14 @@ export {
   addDescription,
   addTitle,
   getDescription,
-  getTitle,
   getBrochure,
   addBrochure,
   addTeamName,
   getTeam,
   deleteTeam,
   editTeam,
+  addToGallery,
+  getGallery,
+  deleteGalleryImage,
+  get3fromGallery
 };

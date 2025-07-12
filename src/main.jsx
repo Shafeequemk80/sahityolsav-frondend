@@ -19,6 +19,9 @@ import AddCategory from "./admin/AddCategory.jsx";
 import AddItem from "./admin/AddItem.jsx";
 import StartProgram from "./admin/StartProgram.jsx";
 import AddResults from "./admin/AddResults.jsx";
+import GalleryPage from "./users/GalleryPage.jsx";
+import AddGallery from "./admin/AddGallery.jsx";
+import GalleryUpaloader from "./admin/GalleryUpaloader.jsx";
 
 const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
 
@@ -27,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
       <Routes>
         <Route path="/" element={<UserSide />} />
+        <Route path="/gallerypage" element={<GalleryPage />} />
         <Route path="/admin/login" element={isAdminLoggedIn?<Navigate to={'/admin'}/>: <Login />} />
         <Route
           path="/admin"
@@ -117,7 +121,16 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </ProtectedRoute>
           }
         />
+          <Route
+          path="admin/addgallery"
+          element={
+            <ProtectedRoute>
+              <AddGallery/>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   </React.StrictMode>
+
 );
