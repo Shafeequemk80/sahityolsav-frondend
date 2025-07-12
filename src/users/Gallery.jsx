@@ -33,7 +33,12 @@ function Gallery() {
     }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container  mx-auto px-4 py-8">
+       <div className='flex justify-center mb-10'>
+         <h2 className="text-4xl lg:text-5xl  font-bold">
+          Gallery
+        </h2>
+    </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {images&&images.map((src, index) => (
           <div key={index} className="border-8 border-[#c7d9a7] overflow-hidden ¸ˇ">
