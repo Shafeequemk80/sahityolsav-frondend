@@ -15,7 +15,7 @@ function AddGallery() {
         const res = await getGallery(); // 👈 Call your API function
         const data= res
      if (data) {
-           console.log(data);
+         
         
         setImages(data.data);  
      }     // 👈 Update state with image data

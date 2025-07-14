@@ -25,7 +25,7 @@ const AddItem = () => {
                     error: 'Failed to fetch Team Data.',
                 }
             )
-            console.log(responce.data);
+        
 
             setCategory(responce.data)
         }
@@ -62,7 +62,7 @@ const AddItem = () => {
                     error: 'Failed to add Item ',
                 }
             )
-            console.log(response);
+       
 
             setItemList((prev) => [response.data, ...prev]);
             setErrors('')

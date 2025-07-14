@@ -27,7 +27,6 @@ function TeamPoint() {
 
     fetchData();
   }, []);
-  console.log(points)
   return (
     <>
       <div className="p-6 bg-[#FADFA1] mt-10 flex justify-center">

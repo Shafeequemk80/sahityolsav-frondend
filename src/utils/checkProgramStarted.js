@@ -7,8 +7,7 @@ export const checkProgramStarted = async () => {
   try {
     
     const response = await checkStartProgram();
- 
-console.log(response);
+
 
     if (response?.success) {
       await Swal.fire({

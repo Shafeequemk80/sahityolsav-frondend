@@ -20,7 +20,6 @@ const ScoreAd = () => {
       if (response?.success) {
         toast.success('Team data loaded successfully!');
         setTeams(response?.data?.sortedResults)
-        console.log(response?.data?.afterCount);
         
         setAfterCount(response?.data?.afterCount);
       } else {
@@ -55,7 +54,6 @@ const ScoreAd = () => {
   const validateForm = () => {
     const newErrors = [];
     let isValid = true;
-    console.log(formState);
 
     teams.forEach((item, index) => {
       if (!item.point && item.point !== 0) {
@@ -80,7 +78,6 @@ const ScoreAd = () => {
     }
 
     toast.loading('Adding scores...');
-    console.log('Submitted Form Data:', formState);
 
     const response = await scoreData(teams,afterCount);
     toast.dismiss();

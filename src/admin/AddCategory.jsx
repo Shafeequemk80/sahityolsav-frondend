@@ -23,7 +23,6 @@ const AddCategory = () => {
                     error: 'Failed to fetch Team Data.',
                 }
             )
-            console.log(responce.data);
 
             setCategory(responce.data)
         }
@@ -63,7 +62,6 @@ const AddCategory = () => {
                     error: 'Failed to add Category ',
                 }
             )
-            console.log(response);
 
             setCategory((prev) => [response.data, ...prev]);
             setErrors('')
@@ -92,7 +90,6 @@ const AddCategory = () => {
 
                     const response = await deleteCategory(id); // Axios call
                     toast.dismiss(); // remove loading toast
-                    console.log(response);
 
                     if (response?.success === true) {
                         toast.success('Category deleted successfully');

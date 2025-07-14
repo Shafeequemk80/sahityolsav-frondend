@@ -1,7 +1,5 @@
-import { data } from "autoprefixer";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
-console.log(baseUrl);
   
 async function startProgram() {
   const response = await axios.get(
@@ -43,15 +41,15 @@ async function getDataServer(item, category) {
   const response = await axios.get(
     `${baseUrl}/getresult/?item=${item}&category=${category}`
   );
-  console.log(response);
+ 
   return response.data;
 }
 
 async function postDataServer(postData) {
   try {
-    console.log("apicalled");
+
     const response = await axios.post(`${baseUrl}/saveresult`, postData);
-    console.log("apicalledres");
+
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);

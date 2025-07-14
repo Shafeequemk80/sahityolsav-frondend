@@ -53,7 +53,7 @@ function AddResults() {
           error: 'Failed to fetch Team Data.',
         }
       )
-      console.log(responce.data);
+     
 
       setCategories(responce.data)
     }
@@ -119,7 +119,6 @@ function AddResults() {
     toast.loading('Waiting...');
 
     const data = await postDataServer(postData);
-    console.log(data, data);
     toast.dismiss()
     toast.success('Successfully Added!');
     setFormData({

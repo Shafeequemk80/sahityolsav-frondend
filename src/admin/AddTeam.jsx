@@ -23,7 +23,6 @@ const AddTeam = () => {
                     error: 'Failed to fetch Team Data.',
                 }
             )
-            console.log(responce.data);
 
             setTeams(responce.data)
         }
@@ -63,7 +62,6 @@ const AddTeam = () => {
                     error: 'Failed to fetch Team Data.',
                 }
             )
-            console.log(response);
 
             setTeams((prev) => [response.data, ...prev]);
             setErrors('')

@@ -8,7 +8,6 @@ function Footer() {
     async function fetchData() {
       try {
         const responce = await getDescription()
-        console.log(responce)
         setDescription(responce.data)
         toast.success(`Yes, ${responce.message}}`);
 

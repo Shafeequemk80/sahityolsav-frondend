@@ -38,7 +38,6 @@ const GalleryUpaloader = ({images,setImages}) => {
         setSelectedImage(null);
         setPreviewUrl(null);
       }    }
-        console.log("Uploaded Image URL:", res);
         } catch (error) {
         console.error("Upload error:", error.message);
         alert("Upload failed ❌");

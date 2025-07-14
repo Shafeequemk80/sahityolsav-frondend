@@ -20,7 +20,6 @@ function Gallery() {
           const res = await get3fromGallery(); // 👈 Call your API function
           const data= res
        if (data) {
-             console.log(data);
           
           setImages(data.data);  
        }     // 👈 Update state with image data

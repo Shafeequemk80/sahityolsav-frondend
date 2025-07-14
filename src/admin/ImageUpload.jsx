@@ -17,7 +17,6 @@ const ImageUpload = () => {
       try {
         const response = await axios.get(`${baseUrl}/showImage`);
         const data = response.data.data;
-        console.log(data.image1.image); // Logging the fetched data
 
         const newImages = [
           data.image1.image
@@ -90,7 +89,6 @@ const ImageUpload = () => {
       const response = await ImageUploadServer(formData);
       toast.dismiss();
       toast.success("Successfully Added!");
-      console.log("Upload response:", response.data);
     } catch (error) {
       console.error("Error uploading image:", error);
       toast.dismiss();

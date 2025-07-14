@@ -63,7 +63,6 @@ function UserSide() {
       try {
         const response = await axios.get(`${baseUrl}/showImage`);
         const data = response.data.data;
-        console.log(data.image1.image); // Logging the fetched data
 
         const newImages = [
           data.image1.image
@@ -90,7 +89,6 @@ function UserSide() {
         // Logging the URLs directly
         newImages.forEach((image, index) => {
           if (image) {
-            console.log(`Image ${index + 1} URL: ${image}`);
           }
         });
       } catch (error) {
@@ -125,7 +123,6 @@ function UserSide() {
       const response = await getDataServer(itemValue, category);
 
       const { success, message, data } = response
-      console.log(data);
 
 
       setTostData({
