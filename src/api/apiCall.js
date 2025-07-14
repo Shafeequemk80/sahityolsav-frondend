@@ -2,8 +2,7 @@ import { data } from "autoprefixer";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 console.log(baseUrl);
-//const baseUrl = "https://sahityolsav-backred.onrender.com";
-
+  
 async function startProgram() {
   const response = await axios.get(
     `${baseUrl}/startprogram`
